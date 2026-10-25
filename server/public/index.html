@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FF8FC0">
+<title>SafeHer: Women's Safety</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="/msgcheck.js"></script>
+<script id="early">try{if(JSON.parse(localStorage.getItem("fs_disguise")).on)document.documentElement.classList.add("disg")}catch(e){}</script>
+<style>
+/* ===== SafeHer design system ===== */
+:root{--bg:#FFF2F7;--ink:#4A2140;--mute:#8D6682;--line:#FAD3E3;--gline:rgba(224,53,127,.38);--pur:#D42B78;--pur2:#FF7DB5;--teal:#0FA38A;--hi:#E11D52;--md:#C2740A;--lo:#0FA38A;--panel:#4A2140;--panelt:#FFF2F7;--surf:#fff;--glass:rgba(255,242,247,.66);--b1:#E0357F;--b2:#F763A5;--shadow:0 1px 2px rgba(224,53,127,.07),0 12px 28px -12px rgba(224,53,127,.28);--shadow2:0 2px 6px rgba(224,53,127,.08),0 26px 50px -16px rgba(224,53,127,.38);--tint:rgba(240,80,154,.1)}
+@media(prefers-color-scheme:dark){:root{--bg:#22101D;--ink:#FFE9F2;--mute:#D8AAC4;--line:#4D2A43;--gline:rgba(255,143,190,.45);--pur:#FF9CC6;--pur2:#FFB8D8;--teal:#5EE0C8;--hi:#FF7A9E;--md:#F5B454;--lo:#5EE0C8;--panel:#170B14;--panelt:#FFE9F2;--surf:#2F1829;--glass:rgba(34,16,29,.68);--shadow:0 1px 2px rgba(0,0,0,.3),0 12px 30px -14px rgba(0,0,0,.6);--shadow2:0 2px 6px rgba(0,0,0,.35),0 26px 52px -18px rgba(0,0,0,.7);--tint:rgba(255,156,198,.13)}}
+*{box-sizing:border-box}html{scroll-padding-top:84px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "Nunito",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(620px 440px at 90% -6%,rgba(255,134,184,.34),transparent 70%),radial-gradient(560px 440px at -6% 6%,rgba(196,170,255,.28),transparent 70%),radial-gradient(560px 520px at 55% 112%,rgba(255,196,160,.30),transparent 70%)}
+h1,h2,h3{font-family:"Fredoka",system-ui,sans-serif;line-height:1.1;margin:0 0 .5em;letter-spacing:-.02em}
+h1{font-size:clamp(2.2rem,7vw,3.7rem);font-weight:700}h2{font-size:1.7rem;font-weight:600}h3{font-size:1.15rem;font-weight:600}
+a{color:var(--pur);text-underline-offset:3px}
+p{margin:.6em 0}
+
+/* header + sticky nav */
+header{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:calc(14px + env(safe-area-inset-top,0px)) 20px 8px;max-width:960px;margin:auto}
+.brand{display:inline-flex;align-items:center;gap:10px;font:700 1.45rem "Fredoka",sans-serif;letter-spacing:-.02em}
+.logo{width:36px;height:36px;flex:none;filter:drop-shadow(0 6px 10px rgba(224,53,127,.35))}
+.stick{position:sticky;top:0;z-index:30;-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4);background:var(--glass);border-bottom:1px solid transparent}
+.navw{max-width:960px;margin:auto;padding:6px 20px 8px}
+#nav{margin:0}
+select,input{font:inherit;color:var(--ink);background:var(--surf);border:2px solid color-mix(in srgb,var(--mute) 30%,var(--line));border-radius:16px;padding:11px 14px;transition:border-color .15s,box-shadow .15s}
+select{border-radius:99px;padding:8px 14px;font-size:.95rem;font-weight:600;cursor:pointer}
+input{width:100%}label{display:block;font-weight:600;margin:16px 0 5px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--pur);box-shadow:0 0 0 4px var(--tint)}
+input::placeholder,textarea::placeholder{color:var(--mute);opacity:.7}
+input[type=checkbox],input[type=radio]{accent-color:var(--b1)}
+main{max-width:960px;margin:auto;padding:22px 20px 110px}
+
+/* buttons */
+button{font:800 1rem "Nunito",sans-serif;cursor:pointer;border-radius:99px;border:1.5px solid transparent;background:linear-gradient(135deg,var(--b1),var(--b2));color:#fff;padding:12px 24px;min-height:48px;border-radius:99px;box-shadow:0 4px 0 #B8236A,0 12px 20px -8px rgba(224,53,127,.6);transition:transform .12s,filter .15s,box-shadow .12s}
+button:hover{filter:brightness(1.06);transform:translateY(-1px)}button:active{transform:translateY(3px);box-shadow:0 1px 0 #B8236A,0 4px 8px -4px rgba(224,53,127,.5)}
+button.ghost{background:transparent;color:var(--pur);border-color:var(--gline);box-shadow:none}
+button.ghost:hover{background:var(--tint);filter:none;transform:none}button.ghost:active{transform:scale(.97);box-shadow:none}
+button.sm{padding:6px 16px;min-height:38px;font-size:.92rem;border-radius:99px;box-shadow:0 3px 0 #B8236A,0 8px 14px -8px rgba(224,53,127,.5)}button.ghost.sm{box-shadow:none}
+:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+a>button{text-decoration:none}
+.call{background:linear-gradient(135deg,#FF5C86,#E11D52);box-shadow:0 4px 0 #A8123B,0 12px 20px -8px rgba(225,29,82,.6)}
+
+.lead{font-size:1.2rem;color:var(--mute);max-width:36em}
+.trust{display:inline-flex;align-items:center;gap:8px;border:1px solid color-mix(in srgb,var(--teal) 45%,transparent);background:color-mix(in srgb,var(--teal) 10%,transparent);color:var(--teal);border-radius:99px;padding:5px 14px;font-size:.9rem;font-weight:600;margin-bottom:18px}
+.trust::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 4px color-mix(in srgb,var(--teal) 25%,transparent)}
+.box{background:var(--surf);border:2px solid var(--line);border-radius:26px;padding:24px;margin:18px 0;box-shadow:var(--shadow)}
+.box h3{display:flex;align-items:center;gap:8px}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.bar{height:12px;background:var(--line);border-radius:9px;overflow:hidden;margin:18px 0}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--b1),var(--pur2));border-radius:9px;transition:width .4s}
+
+/* score card */
+.dossier{position:relative;overflow:hidden;background:linear-gradient(150deg,#FF8FC0 0%,#F0509A 55%,#C93C9E 100%);color:#fff;border:2px solid rgba(255,255,255,.55);border-radius:32px;padding:26px;margin:18px 0;box-shadow:0 8px 0 #C4286E,var(--shadow2)}
+.dossier::before{content:"";position:absolute;right:-70px;top:-70px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.45),transparent 70%);pointer-events:none}
+.dossier::after{content:"\2726  \2665  \2726";position:absolute;right:20px;bottom:10px;font-size:1.1rem;letter-spacing:.5em;opacity:.55;pointer-events:none}
+.dossier>*{position:relative}
+.dossier h2{color:#fff}.dossier .big{font:700 4.8rem/1 "Fredoka",sans-serif;color:#fff;-webkit-text-fill-color:#fff;text-shadow:0 4px 0 rgba(160,20,90,.35)}
+.dossier li{margin:.3em 0}.dossier .gone{text-decoration:line-through;opacity:.45}
+
+/* tabs / pills */
+.tabs{display:flex;gap:4px;padding:5px;background:var(--surf);border:2px solid var(--line);border-radius:99px;margin:22px 0 12px;overflow-x:auto;scrollbar-width:none;box-shadow:var(--shadow)}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{background:none;color:var(--mute);border:0;border-radius:99px;box-shadow:none;transform:none;white-space:nowrap;padding:9px 18px;min-height:42px;font-weight:700}
+.tabs button:hover{background:var(--tint);color:var(--ink);filter:none;transform:none}.tabs button:active{transform:none;box-shadow:none}
+.tabs button[aria-selected=true],.tabs button[aria-current=page]{background:linear-gradient(135deg,var(--b1),var(--b2));color:#fff;box-shadow:0 3px 0 #B8236A,0 8px 14px -8px rgba(224,53,127,.7)}
+
+/* findings */
+.f{position:relative;overflow:hidden;background:var(--surf);border:2px solid var(--line);border-radius:22px;padding:18px 20px 16px 26px;margin:14px 0;box-shadow:var(--shadow);--tagbg:rgba(15,163,138,.14)}
+.f::before{content:"";position:absolute;left:0;top:0;bottom:0;width:7px;background:var(--lo)}
+.f.s3{--tagbg:rgba(225,29,82,.12)}.f.s3::before{background:var(--hi)}.f.s2{--tagbg:rgba(194,122,10,.14)}.f.s2::before{background:var(--md)}.f.done{opacity:.6}
+.tag{display:inline-block;font-size:.78rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:3px 11px;border-radius:99px;background:var(--tagbg);margin-bottom:8px}
+.s3 .tag{color:var(--hi)}.s2 .tag{color:var(--md)}.s1 .tag{color:var(--lo)}
+.f ol{padding-left:20px;margin:8px 0}.f details{margin-top:10px;background:var(--tint);border-radius:12px;padding:10px 14px}
+summary{cursor:pointer;font-weight:700;color:var(--pur)}
+pre{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px;font:.92rem/1.5 "Nunito",sans-serif}
+.hot{outline:2px solid var(--hi)}
+.hide{display:none}.note{color:var(--mute);font-size:.93rem}
+input[type=file]{padding:10px}
+textarea{width:100%;min-height:140px;font:inherit;color:var(--ink);background:var(--surf);border:2px solid color-mix(in srgb,var(--mute) 30%,var(--line));border-radius:18px;padding:12px 16px;transition:border-color .15s,box-shadow .15s}
+
+/* SOS */
+#fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));background:linear-gradient(135deg,#FF5C86,#E11D52);color:#fff;border:0;border-radius:99px;min-width:68px;min-height:58px;font:700 1.05rem "Fredoka",sans-serif;letter-spacing:.04em;box-shadow:0 12px 28px -6px rgba(214,36,90,.7),0 0 0 0 rgba(214,36,90,.5);z-index:5;animation:fabp 2.6s ease-out infinite}
+@keyframes fabp{0%{box-shadow:0 12px 28px -6px rgba(214,36,90,.7),0 0 0 0 rgba(214,36,90,.45)}70%,100%{box-shadow:0 12px 28px -6px rgba(214,36,90,.7),0 0 0 18px rgba(214,36,90,0)}}
+.sosb{width:210px;height:210px;border-radius:50%;background:radial-gradient(circle at 32% 24%,#FF9DB8,#FF4B7E 48%,#D01848);border:0;color:#fff;font:700 2.9rem "Fredoka",sans-serif;letter-spacing:.04em;display:block;margin:48px auto;box-shadow:0 22px 44px -12px rgba(214,36,90,.7),inset 0 -8px 18px rgba(0,0,0,.18),0 0 0 12px rgba(214,36,90,.14),0 0 0 26px rgba(214,36,90,.07);animation:sosp 2.4s ease-in-out infinite}
+#cd{font-weight:600;font-size:1.1rem;margin:-18px 0 22px}#cd button{margin-top:12px}
+.sosb:hover{filter:brightness(1.06)}.sosb:active{transform:scale(.96)}
+@keyframes sosp{50%{box-shadow:0 22px 44px -12px rgba(214,36,90,.7),inset 0 -8px 18px rgba(0,0,0,.18),0 0 0 18px rgba(214,36,90,.1),0 0 0 38px rgba(214,36,90,.04)}}
+
+.chip{display:inline-block;border-radius:99px;padding:3px 12px;font-weight:700;font-size:.88rem;border:1.5px solid}
+.hl{white-space:pre-wrap;word-break:break-word;background:var(--surf);border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;line-height:1.75}
+mark.mk{color:inherit;border-radius:4px;padding:1px 2px;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}mark.mk3{background:rgba(201,37,79,.22);text-decoration-color:var(--hi)}mark.mk2{background:rgba(194,122,10,.25);text-decoration-color:var(--md)}mark.mk sup{font-size:.65em;font-weight:700;margin-left:2px}
+ol.why li{margin:.6em 0}.fb{border-top:1px solid var(--line);margin-top:14px}.thumb{max-width:100%;max-height:260px;border-radius:14px;display:block;margin:12px 0}
+.bar.ind i{width:30%;animation:ind 1.2s linear infinite;transition:none}@keyframes ind{from{margin-left:-30%}to{margin-left:100%}}
+.callout{border-left:5px solid var(--md);background:color-mix(in srgb,var(--md) 10%,var(--surf));padding:4px 14px;border-radius:0 12px 12px 0;margin:10px 0}
+.s-ok{color:var(--lo)}.s-bad{color:var(--hi)}.s-mid{color:var(--md)}
+.st{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:9px 0;border-bottom:1px solid var(--line)}.st:last-child{border-bottom:0}.st>span:first-child{font-weight:700}.al{margin:10px 0}
+
+/* sharing bar */
+#shbar{background:linear-gradient(90deg,#D81B52,#FF4B7E);color:#fff;padding:9px 20px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center;font-weight:600}#shbar.hide{display:none}#shbar.sh{background:linear-gradient(90deg,#0B6F64,#0B8F80)}#shbar.off{background:#8D5A7F}
+#shbar .dot{width:12px;height:12px;border-radius:50%;background:#fff;animation:pl 1.2s ease-in-out infinite;flex:none}#shbar.off .dot{animation:none;opacity:.6}@keyframes pl{50%{opacity:.25}}
+#shbar button{background:#fff;color:#4A2140;border-color:#fff;min-height:36px;padding:4px 14px;font-size:.9rem;box-shadow:none}#shbar button.g{background:transparent;color:#fff}
+
+/* modal */
+.mdl{position:fixed;inset:0;background:rgba(74,33,64,.5);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);z-index:200;display:flex;align-items:center;justify-content:center;padding:16px;overflow:auto}
+.mbox{background:var(--surf);color:var(--ink);border:2px solid var(--line);border-radius:30px;padding:26px;max-width:520px;width:100%;max-height:100%;overflow:auto;box-shadow:var(--shadow2)}.mbox li{margin:.35em 0}
+.chk{display:flex;gap:10px;align-items:flex-start;font-weight:400;margin:16px 0}.chk input{width:22px;height:22px;flex:none;margin-top:2px}
+.ev{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:6px 0}.ev .thumb{max-height:110px;margin:0;border:1px solid var(--line)}
+
+/* landing */
+.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:20px;align-items:center;padding:8px 0 6px;animation:up .6s both}
+.hero h1{background:linear-gradient(120deg,var(--ink) 30%,var(--pur) 70%,#FF8A5C 120%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;padding-bottom:.06em}
+.hero .row{margin-top:24px}.hero button{padding:14px 26px;font-size:1.05rem}
+.hero-art{width:100%;max-width:330px;justify-self:center}.hero-art svg{width:100%;height:auto;display:block;overflow:visible}
+.ring{fill:none;stroke:var(--pur);stroke-width:1.5;transform-origin:160px 160px;animation:rg 3.6s ease-out infinite;opacity:0}.ring.r2{animation-delay:1.2s}.ring.r3{animation-delay:2.4s}
+@keyframes rg{0%{transform:scale(.45);opacity:.55}100%{transform:scale(1.15);opacity:0}}
+.sp{transform-box:fill-box;transform-origin:center;animation:tw 2.4s ease-in-out infinite}.sp.b{animation-delay:.8s}.sp.c{animation-delay:1.5s}
+@keyframes tw{0%,100%{transform:scale(.55) rotate(0);opacity:.55}50%{transform:scale(1.1) rotate(20deg);opacity:1}}
+.flt{animation:fl 4s ease-in-out infinite}@keyframes fl{50%{transform:translateY(-8px)}}
+.ringf{fill:none;stroke:var(--pur);stroke-opacity:.18;stroke-width:1.5}
+.feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:30px 0 8px}
+button.feat{display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;background:var(--surf);color:var(--ink);border:2px solid var(--line);border-radius:28px;padding:22px;min-height:0;box-shadow:0 5px 0 var(--line),var(--shadow);animation:up .6s both}
+button.feat:hover{transform:translateY(-4px) rotate(-.6deg);box-shadow:0 9px 0 var(--line),var(--shadow2);border-color:var(--gline);filter:none}button.feat:active{transform:translateY(2px);box-shadow:0 2px 0 var(--line)}
+button.feat:nth-child(2){animation-delay:.06s}button.feat:nth-child(3){animation-delay:.12s}button.feat:nth-child(4){animation-delay:.18s}button.feat:nth-child(5){animation-delay:.24s}
+.ico{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,rgba(255,134,184,.32),rgba(255,196,160,.22));color:var(--pur);margin-bottom:6px}
+.ico svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.feat.sosf .ico{background:rgba(225,29,82,.14);color:var(--hi)}
+.ft{font:700 1.15rem "Fredoka",sans-serif;letter-spacing:-.01em}.fd{font:400 .96rem/1.5 "Nunito",sans-serif;color:var(--mute)}
+.sec{font-size:1.6rem;margin:42px 0 4px}.sec::after{content:" \2726";color:#FF8FC0;font-size:.8em}
+@media(min-width:600px){button.feat.sosf{grid-column:span 2}}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:14px 0}
+.stp{background:var(--surf);border:2px dashed var(--gline);border-radius:26px;padding:20px;box-shadow:var(--shadow)}
+.stp i{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--b1),var(--b2));color:#fff;font:700 1rem "Fredoka",sans-serif;font-style:normal;margin-bottom:10px}
+.stp b{display:block;font:700 1.1rem "Fredoka",sans-serif;margin-bottom:4px}.stp span{display:block;color:var(--mute);font-size:.96rem;line-height:1.5}
+.pills{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0}
+.pill{display:inline-flex;align-items:center;gap:8px;background:var(--surf);border:2px solid var(--line);border-radius:99px;padding:8px 16px;font-weight:600;font-size:.93rem;box-shadow:var(--shadow)}
+.pill svg{width:17px;height:17px;fill:none;stroke:var(--teal);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.emg{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;background:linear-gradient(135deg,rgba(255,134,184,.2),rgba(255,196,160,.18));border:2px solid rgba(225,29,82,.22);border-radius:28px;padding:18px 22px;margin:26px 0 6px}
+.emg b{font:700 1.1rem "Fredoka",sans-serif}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* disguise (calculator) */
+html.disg body>:not(#calc){display:none!important}html.disg body::before{display:none}#calc{display:none}html.disg #calc{display:flex}html.disg body{background:#000}
+#calc{position:fixed;top:0;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:440px;z-index:100;background:#000;color:#fff;flex-direction:column;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}#cdisp{flex:1;display:flex;align-items:flex-end;justify-content:flex-end;font-size:56px;padding:24px;word-break:break-all}#ckeys{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:10px}#ckeys button{height:72px;border:0;border-radius:36px;background:#333;color:#fff;font-size:26px;padding:0;box-shadow:none}#ckeys button.op{background:#F2B84B;color:#1B1424}
+
+@media(max-width:720px){.hero{grid-template-columns:1fr;padding-top:10px}.hero-art{max-width:170px;order:-1;justify-self:start}.dossier .big{font-size:3.8rem}.sosb{width:190px;height:190px}h2{font-size:1.45rem}main{padding-bottom:120px}}
+@media print{header,.stick,.tabs,button,select,.noprint,#shbar,#fab,body::before{display:none!important}body{background:#fff;color:#000}.dossier{background:#eee;color:#000;box-shadow:none}.dossier .big{color:#000;-webkit-text-fill-color:#000}.tabpane{display:block!important}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div id="calc" role="group" aria-label="Calculator"><div id="cdisp" role="status">0</div><div id="ckeys"></div></div>
+<header><span class="brand"><svg class="logo" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F0509A"/><stop offset="1" stop-color="#FF9BC9"/></linearGradient></defs><path d="M24 3 6 10v13c0 11 7.6 18.4 18 22 10.4-3.600 18-11 18-22V10z" fill="url(#lg)"/><path transform="translate(12 12.4)" d="M12 20.5s-7-4.3-9.2-8.8A5 5 0 0 1 12 6.8a5 5 0 0 1 9.2 4.9C19 16.2 12 20.5 12 20.5z" fill="#fff"/></svg>SafeHer</span>
+<span class="row" style="gap:8px"><button class="ghost sm hide" id="hideb">Hide app</button><button class="ghost sm" id="ha"></button><select id="lang" aria-label="Language"><option value="en">English</option><option value="hi">हिन्दी</option><option value="mr">मराठी</option></select></span></header>
+<div class="stick noprint"><div id="shbar" class="noprint hide" role="status" aria-live="polite"></div>
+<div class="navw"><nav id="nav" class="tabs" aria-label="Sections"></nav></div></div>
+<main id="app"></main>
+<button id="fab" aria-label="Open SOS">SOS</button>
+<script>
+const T={en:{start:"Start my scan",tag:"We never store your photos or personal details",h:"See what the internet knows about you, then take it down.",lead:"Check what personal details of yours are publicly exposed, see how a stranger could use them, and follow a short checklist to remove them.",consent:"Before you scan",consentp:"I confirm I am scanning only my own information. This tool must never be used to look up another person.",agree:"I agree, continue",form:"What should we check?",formp:"All fields are optional. They are sent once to run the lookups and are not stored. Your account email is the one checked for breaches.",name:"Full name",email:"Email",phone:"Phone number",user:"Username (Instagram, X, etc.)",city:"City",run:"Scan now",scan:"Scanning",score:"Exposure score",stalker:"What a stranger could piece together",findings:"Findings",toolkit:"Safety toolkit",lock:"Quick lockdown: top 5 actions",all:"Show all findings",steps:"How to remove it",tpl:"Request template",copy:"Copy",copied:"Copied",done:"Mark removed",report:"Download report (PDF)",again:"Scan again",clean:"Nothing left exposed. Re-scan every 3 months.",low:"Low",med:"Medium",high:"High",risk:"Why it matters",guard:"Image Privacy Guard",guardp:"Check a photo before you post or share it. We show hidden location and device details and remove them. The photo stays on your device.",pick:"Choose a photo",strip:"Remove hidden data",dl:"Download clean photo",back:"Back"},
+hi:{start:"स्कैन शुरू करें",tag:"आपकी फ़ोटो और निजी जानकारी कभी सेव नहीं होती",h:"देखें इंटरनेट आपके बारे में क्या जानता है, फिर उसे हटाएँ।",lead:"जानें आपकी कौन सी निजी जानकारी सार्वजनिक है, कोई अजनबी उसका कैसे उपयोग कर सकता है, और उसे हटाने की सूची अपनाएँ।",consent:"स्कैन से पहले",consentp:"मैं पुष्टि करती हूँ कि मैं केवल अपनी जानकारी स्कैन कर रही हूँ। इसे किसी और की खोज के लिए कभी उपयोग न करें।",agree:"सहमत हूँ, आगे बढ़ें",form:"क्या जाँचें?",formp:"सभी फ़ील्ड वैकल्पिक हैं। जानकारी एक बार जाँच के लिए भेजी जाती है, सेव नहीं होती। आपके अकाउंट का ईमेल ब्रीच के लिए जाँचा जाता है।",name:"पूरा नाम",email:"ईमेल",phone:"फ़ोन नंबर",user:"यूज़रनेम",city:"शहर",run:"अभी स्कैन करें",scan:"स्कैन हो रहा है",score:"एक्सपोज़र स्कोर",stalker:"अजनबी क्या जोड़ सकता है",findings:"निष्कर्ष",toolkit:"सुरक्षा टूलकिट",lock:"त्वरित लॉकडाउन: शीर्ष 5 कदम",all:"सभी निष्कर्ष",steps:"कैसे हटाएँ",tpl:"अनुरोध टेम्पलेट",copy:"कॉपी",copied:"कॉपी हुआ",done:"हटा दिया",report:"रिपोर्ट डाउनलोड (PDF)",again:"फिर स्कैन करें",clean:"कुछ भी उजागर नहीं है। हर 3 महीने में दोबारा जाँचें।",low:"कम",med:"मध्यम",high:"उच्च",risk:"यह क्यों ज़रूरी है",guard:"इमेज प्राइवेसी गार्ड"},
+mr:{start:"स्कॅन सुरू करा",tag:"तुमचे फोटो आणि वैयक्तिक तपशील कधीही सेव्ह होत नाहीत",h:"इंटरनेटला तुमच्याबद्दल काय माहीत आहे ते पाहा, मग ते काढून टाका.",lead:"तुमची कोणती वैयक्तिक माहिती सार्वजनिक आहे, अनोळखी व्यक्ती तिचा कसा वापर करू शकते ते तपासा आणि ती काढण्याची यादी पाळा.",consent:"स्कॅन करण्यापूर्वी",consentp:"मी फक्त माझीच माहिती स्कॅन करत आहे याची खात्री देते. हे साधन दुसऱ्याचा शोध घेण्यासाठी कधीही वापरू नये.",agree:"सहमत, पुढे जा",form:"काय तपासायचे?",formp:"सर्व फील्ड ऐच्छिक आहेत. तपशील एकदा तपासणीसाठी पाठवले जातात, सेव्ह होत नाहीत. तुमच्या अकाउंटचा ईमेल ब्रीचसाठी तपासला जातो.",name:"पूर्ण नाव",email:"ईमेल",phone:"फोन नंबर",user:"युजरनेम",city:"शहर",run:"आता स्कॅन करा",scan:"स्कॅन सुरू आहे",score:"एक्सपोजर स्कोअर",stalker:"अनोळखी व्यक्ती काय जोडू शकते",findings:"निष्कर्ष",toolkit:"सुरक्षा टूलकिट",lock:"त्वरित लॉकडाउन: पहिल्या 5 कृती",all:"सर्व निष्कर्ष",steps:"कसे काढायचे",tpl:"विनंती टेम्पलेट",copy:"कॉपी",copied:"कॉपी झाले",done:"काढले",report:"रिपोर्ट डाउनलोड (PDF)",again:"पुन्हा स्कॅन",clean:"काहीही उघड नाही. दर 3 महिन्यांनी पुन्हा तपासा.",low:"कमी",med:"मध्यम",high:"उच्च",risk:"हे का महत्त्वाचे",guard:"इमेज प्रायव्हसी गार्ड"}};
+let L="en",view="landing",tab="f",lockMode=false,D={},F=[];
+const t=k=>T[L][k]||T.en[k],$=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const SEV={3:"high",2:"med",1:"low"},W={3:22,2:12,1:6};
+
+const MANUAL=[["Phone number on caller-ID apps","https://www.truecaller.com/unlisting","Unlist your number on Truecaller. Other apps (Eyecon, GetContact, CallApp) have similar opt-outs."],["Google results about you","https://myactivity.google.com/results-about-you","Find and request removal of results showing your phone, address or email."],["Where your photo appears","https://lens.google.com/","Upload your profile photo to Google Lens or TinEye (tineye.com) to find copies."],["Intimate images shared without consent","https://stopncii.org","StopNCII.org blocks them from spreading. Also report at cybercrime.gov.in."],["Instagram privacy","https://www.instagram.com/accounts/privacy_and_security/","Private account, hide activity status, turn off location tags."],["Facebook privacy checkup","https://www.facebook.com/privacy/checkup/","Limit past posts, friends list and profile search."],["LinkedIn visibility","https://www.linkedin.com/psettings/","Limit profile visibility and hide connections."]];
+let N={clear:[],err:[]};
+const safeUrl=u=>/^https?:\/\//i.test(u)?esc(u):"#";
+function build(R,d){
+ const n=d.name||"[Your name]",p=d.phone||"[your number]";N={clear:[],err:[]};const f=[];
+ const tpl=(site,what)=>`Subject: Request to remove my personal information\n\nHello ${site} team,\n\nI am requesting removal of my personal information. ${what}\nPlease delete it and confirm in writing, as provided under India's Digital Personal Data Protection Act, 2023.\n\nThank you,\n${n}`;
+ const b=R.breach;
+ if(b.status==="found"){const k=b.names.length;f.push({id:"b",sev:3,fact:`your email address and other account details leaked in ${k} data breach${k>1?"es":""}`,title:`Your email appears in ${k} known data breach${k>1?"es":""}`,found:`Breaches: ${esc(b.names.slice(0,8).join(", "))}${k>8?" and "+(k-8)+" more":""}. Source: ${esc(b.source||"")}.`,risk:"Leaked emails and passwords are used to take over accounts and to target you with scams.",steps:["Change the password on each listed service, and anywhere you reused it.","Turn on two-factor authentication on email, Instagram and WhatsApp.","Use a password manager so every site has a unique password.","Treat unexpected calls or messages that mention your old details as scams."],link:["https://haveibeenpwned.com","Have I Been Pwned"],tpl:null})}
+ else b.status==="clear"?N.clear.push("Data breaches for your account email"):N.err.push("Data breach check");
+ const g=R.gravatar;
+ if(g.status==="found")f.push({id:"gv",sev:1,fact:"a public Gravatar profile photo tied to your email",title:"Your email has a public Gravatar profile",found:"A photo linked to your email address is publicly available to any site that uses Gravatar.",risk:"Anyone who knows your email can see this photo and may find your other accounts.",steps:["Sign in at gravatar.com with this email.","Remove the photo or set its rating and visibility.","Delete the Gravatar account if you do not use it."],link:["https://gravatar.com","Gravatar"],tpl:null});
+ else g.status==="clear"?N.clear.push("Public Gravatar photo for your email"):N.err.push("Gravatar check");
+ const u=R.usernames;
+ if(u.status==="found"){const k=u.found.length;f.push({id:"un",sev:k>=3?2:1,fact:`your username (@${d.username}) links to public profiles on ${u.found.map(x=>x.site).join(", ")}`,title:`Username found on ${k} site${k>1?"s":""}`,found:u.found.map(x=>`<a href="${safeUrl(x.url)}" target="_blank" rel="noopener">${esc(x.site)}</a>`).join(", ")+". Checked "+u.checked+" sites.",risk:"One reused username lets a stranger link your accounts into a single picture of you.",steps:["Open each profile and remove or lock down anything personal (photo, workplace, city, birthday).","Make the account private or delete it if you no longer use it.","Use different usernames on accounts you want kept separate."],link:[u.found[0].url,u.found[0].site+" profile"],tpl:null})}
+ else if(u.status==="clear")N.clear.push(`Username @${d.username} on ${u.checked} sites`);else if(u.status==="error")N.err.push("Username check");
+ const s2=R.search;
+ if(s2.status==="found"){const it=s2.items,hot=it.some(x=>x.broker||(x.verified&&x.kind!=="name"));
+  f.push({id:"sr",sev:hot?3:2,fact:`web pages mentioning your details (${[...new Set(it.map(x=>x.domain))].slice(0,4).join(", ")})`,title:`${it.length} web result${it.length>1?"s":""} mention your details`,found:"<ul style='margin:6px 0;padding-left:18px'>"+it.slice(0,8).map(x=>`<li><a href="${safeUrl(x.url)}" target="_blank" rel="noopener">${esc(x.domain)}</a> ${esc(x.title)} <span class="note">(${x.kind}${x.broker?", data broker":""}${x.verified?"":", unverified match"})</span></li>`).join("")+"</ul>",risk:"Search results and data-broker pages make it easy for strangers to find your contact details and location.",steps:["Open each result and confirm it is about you (name matches can be someone else).","Use the site's opt-out or removal page, or send the request template below.","Use Google's Results about you tool to hide results that show your phone, email or address.","Search again in a few weeks to confirm removal."],link:["https://myactivity.google.com/results-about-you","Google Results about you"],tpl:tpl("the website",`Details to remove: ${d.name||""} ${d.phone?p:""} ${d.city||""}. Page: [paste URL].`)})}
+ else s2.status==="clear"?N.clear.push("Web search for your email, phone and name"):s2.status==="error"?N.err.push("Web search check"):N.manual=true;
+ return f.map(x=>({...x,done:false}));
+}
+const notes=()=>(N.clear.length?`<div class="box"><h3>Checked, nothing found</h3><ul>${N.clear.map(x=>"<li>"+esc(x)+"</li>").join("")}</ul></div>`:"")+(N.err.length?`<div class="box"><h3>Could not check right now</h3><ul>${N.err.map(x=>"<li>"+esc(x)+"</li>").join("")}</ul><p class="note">The lookup service did not respond. Run the scan again later.</p></div>`:"")+`<div class="box"><h3>Check these yourself</h3><p class="note">These need your login or cannot be looked up automatically.${N.manual?" The web search check is not enabled on this server (needs BRAVE_API_KEY).":""}</p><ul>${MANUAL.map(m=>`<li><a href="${m[1]}" target="_blank" rel="noopener">${m[0]}</a>. ${m[2]}</li>`).join("")}</ul></div>`;
+const score=()=>Math.min(100,F.filter(x=>!x.done).reduce((a,x)=>a+W[x.sev],0)+(F.some(x=>!x.done)?10:0));
+
+function render(){
+ const a=$("#app");clearInterval(cd);clearInterval(uiT);navBar();
+ if(view==="guard")return guard(a);
+ $("#ha").textContent=user?"Account":"Sign in";if(view==="account")return account(a);
+ if(view==="sos")return sosView(a);if(view==="routes")return routesView(a);if(view==="msg")return msgView(a);if(view==="reports")return reportsView(a);if(view==="contacts")return contactsView(a);
+ if(view==="landing"){const I=d=>`<svg viewBox="0 0 24 24" aria-hidden="true">${d}</svg>`,
+   IC={sos:I('<path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/>'),msg:I('<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>'),img:I('<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>'),doc:I('<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>'),usr:I('<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>'),lock:I('<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>'),wifi:I('<path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/>'),eye:I('<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>'),globe:I('<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>')},
+   FT=[["sos","sos","SOS and live location","A 5-second cancel countdown, a live tracking link and one-tap alerts to your trusted contacts.","sosf"],["routes","globe","Safe walking routes","Find walking routes from your current location, compare distance and time, and open directions.",""],["msg","msg","Message check","Paste a suspicious message. Scam signs are highlighted in English, Hindi, Marathi and Hinglish.",""],["guard","img","Photo guard","See and strip hidden location and device data from a photo before you share it.",""],["reports","doc","Safety reports","Private, encrypted incident records with photo evidence. Export as PDF or CSV.",""],["contacts","usr","Trusted contacts","Keep up to 5 people ready to be alerted the moment you need them.",""]];
+  a.innerHTML=`<section class="hero"><div><span class="trust">${t("tag")}</span><h1>${t("h")}</h1><p class="lead">${t("lead")}</p><div class="row"><button id="go">${t("start")}</button><button class="ghost" id="gd">${t("guard")}</button></div></div>
+  <div class="hero-art" aria-hidden="true"><svg viewBox="0 0 320 320"><circle class="ringf" cx="160" cy="160" r="150"/><circle class="ringf" cx="160" cy="160" r="112"/><circle class="ring" cx="160" cy="160" r="150"/><circle class="ring r2" cx="160" cy="160" r="150"/><circle class="ring r3" cx="160" cy="160" r="150"/><defs><linearGradient id="hg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8FC0"/><stop offset=".55" stop-color="#F0509A"/><stop offset="1" stop-color="#C93C9E"/></linearGradient><filter id="hs" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#E0357F" flood-opacity=".4"/></filter></defs><g class="flt"><path filter="url(#hs)" d="M160 62 98 86v62c0 52 28 82 62 98 34-16 62-46 62-98V86z" fill="url(#hg)"/><path transform="translate(104.5 88) scale(4.6)" d="M12 20.5s-7-4.3-9.2-8.8A5 5 0 0 1 12 6.8a5 5 0 0 1 9.2 4.9C19 16.2 12 20.5 12 20.5z" fill="#fff"/></g>
+<g transform="translate(52 78)"><path class="sp" d="M0-14 4-4 14 0 4 4 0 14-4 4-14 0-4-4z" fill="#FFB84D"/></g><g transform="translate(272 60)"><path class="sp b" d="M0-10 3-3 10 0 3 3 0 10-3 3-10 0-3-3z" fill="#FF6FAE"/></g><g transform="translate(282 236)"><path class="sp c" d="M0-9 3-3 9 0 3 3 0 9-3 3-9 0-3-3z" fill="#C4A8FF"/></g><g transform="translate(40 232)"><path class="sp b" d="M0-8 2.500-2.500 8 0 2.500 2.500 0 8-2.500 2.500-8 0-2.500-2.500z" fill="#FF6FAE"/></g>
+<g transform="translate(236 104) scale(.9)"><path class="sp c" d="M12 20.5s-7-4.3-9.2-8.8A5 5 0 0 1 12 6.8a5 5 0 0 1 9.2 4.9C19 16.2 12 20.5 12 20.5z" fill="#FF9BC9"/></g><g transform="translate(48 140) scale(.7)"><path class="sp" d="M12 20.5s-7-4.3-9.2-8.8A5 5 0 0 1 12 6.8a5 5 0 0 1 9.2 4.9C19 16.2 12 20.5 12 20.5z" fill="#FFB8D8"/></g></svg></div></section>
+  <div class="feats">${FT.map(f=>`<button class="feat ${f[4]}" data-go="${f[0]}"><span class="ico">${IC[f[1]]}</span><span class="ft">${f[2]}</span><span class="fd">${f[3]}</span></button>`).join("")}</div>
+  <div class="box"><h3>SafeHer feature access</h3><p class="note">Use the navigation above for SOS and live location, safe walking routes, suspicious-message checks, photo metadata cleaning, encrypted incident reports, trusted contacts, your profile, language, and calculator privacy mode.</p><p class="note"><b>Browser limitation:</b> background location when the browser is closed, automatic SMS sending, and continuous Bluetooth mesh SOS relaying require native mobile permissions and cannot be guaranteed by a website. Web SOS needs location permission and a live connection; SMS/WhatsApp links still require you to press Send.</p></div><h2 class="sec">How the footprint scan works</h2>
+  <div class="steps"><div class="stp"><i>1</i><b>Scan</b><span>Checks data breaches, public profiles and web results for your own details.</span></div><div class="stp"><i>2</i><b>Understand</b><span>Get an exposure score and see how a stranger could use what was found.</span></div><div class="stp"><i>3</i><b>Remove</b><span>Follow short checklists and send ready-made removal requests.</span></div></div>
+  <div class="pills"><span class="pill">${IC.lock}Reports are encrypted</span><span class="pill">${IC.eye}Photos and messages stay in your browser</span><span class="pill">${IC.wifi}SOS fallback works offline</span><span class="pill">${IC.globe}English, हिन्दी, मराठी</span></div>
+  <div class="emg"><div><b>In danger right now?</b><div class="note">Do not scan. Call for help first.</div></div><div class="row"><a href="tel:112"><button class="call">Call 112</button></a><a href="tel:181"><button class="ghost">Women helpline 181</button></a></div></div>`;
+  $("#go").onclick=()=>{view="consent";render()};$("#gd").onclick=()=>{view="guard";render()};
+  document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>{view=b.dataset.go;render();window.scrollTo({top:0,behavior:"smooth"})})}
+ else if(view==="consent")a.innerHTML=`<h2>${t("consent")}</h2><div class="box"><p>${t("consentp")}</p><p class="note">You must be signed in, and the email checked is always your own account email. Scans are limited to 8 a day. Your details are used once for the lookups and are never stored.</p><button id="ok">${t("agree")}</button></div>`,$("#ok").onclick=()=>{view="form";render()};
+ else if(view==="form"){if(!user)return needLogin(a,"run a footprint scan. This keeps the tool from being used to look up other people");
+  a.innerHTML=`<h2>${t("form")}</h2><p class="note">${t("formp")}</p><div class="box"><label for="ae2">${t("email")} (your account email, checked for data breaches)</label><input id="ae2" value="${esc(user.email)}" readonly><label for="n">${t("name")}</label><input id="n" autocomplete="off" value="${esc(D.name||"")}"><label for="p">${t("phone")} (with country code)</label><input id="p" inputmode="tel" autocomplete="off" value="${esc(D.phone||"")}"><label for="u">${t("user")}</label><input id="u" autocomplete="off" value="${esc(D.username||"")}"><label for="c">${t("city")}</label><input id="c" autocomplete="off" value="${esc(D.city||"")}"><p><button id="run">${t("run")}</button></p></div>`;
+  $("#run").onclick=()=>{D={name:$("#n").value.trim(),phone:$("#p").value.trim(),username:$("#u").value.trim().replace(/^@/,""),city:$("#c").value.trim()};scanId=null;view="scan";render()}}
+ else if(view==="scan"){a.innerHTML=`<h2>${t("scan")}</h2><p class="lead">Checking breach records, public profiles and web results. This can take up to 20 seconds.</p><div class="bar ind" role="progressbar" aria-label="Scanning"><i></i></div><div id="se" role="alert"></div>`;doScan()}
+ else results(a);
+}
+function results(a){
+ const live=F.filter(x=>!x.done),sc=score();
+ const list=live.length?live.map(x=>"<li>"+esc(x.fact)+"</li>").join(""):"";
+ const gone=F.filter(x=>x.done).map(x=>`<li class="gone">${esc(x.fact)}</li>`).join("");
+ const shown=(lockMode?[...F].sort((x,y)=>y.sev-x.sev).slice(0,5):F);
+ a.innerHTML=`<div class="dossier"><div class="row" style="justify-content:space-between"><div><div class="note" style="color:#FFE3EF">${t("score")}</div><div class="big" id="sc">${sc}</div></div><div style="flex:1;min-width:240px"><h2>${t("stalker")}</h2><ul style="padding-left:18px;margin:0">${list||`<li>${t("clean")}</li>`}${gone}</ul></div></div></div>
+ <div class="tabs" role="tablist"><button role="tab" aria-selected="${tab==="f"}" data-t="f">${t("findings")}</button><button role="tab" aria-selected="${tab==="k"}" data-t="k">${t("toolkit")}</button></div>
+ <div class="tabpane ${tab==="f"?"":"hide"}"><div class="row noprint"><button class="ghost sm" id="lk">${lockMode?t("all"):t("lock")}</button></div>
+ ${shown.map(x=>`<div class="f s${x.sev} ${x.done?"done":""}"><span class="tag">${t(SEV[x.sev]==="med"?"med":SEV[x.sev])}</span><h3>${esc(x.title)}</h3><p style="margin:0">${x.found}</p><p class="note" style="margin:.3em 0">${t("risk")}: ${esc(x.risk)}</p>
+ <details><summary>${t("steps")}</summary><ol>${x.steps.map(s=>"<li>"+esc(s)+"</li>").join("")}</ol><a href="${x.link[0]}" target="_blank" rel="noopener">${esc(x.link[1])}</a>
+ ${x.tpl?`<p><b>${t("tpl")}</b></p><pre id="t-${x.id}">${esc(x.tpl)}</pre><button class="ghost sm" data-c="${x.id}">${t("copy")}</button>`:""}</details>
+ <label style="font-weight:400;margin-top:10px"><input type="checkbox" style="width:auto" data-d="${x.id}" ${x.done?"checked":""}> ${t("done")}</label></div>`).join("")}${notes()}</div>
+ <div class="tabpane ${tab==="k"?"":"hide"}">${toolkit()}</div>
+ <div class="row noprint" style="margin-top:24px"><button id="pdf">${t("report")}</button><button class="ghost" id="re">${t("again")}</button></div>
+ <p class="note noprint">Progress saves to your account. Results come from live lookups made just now. "Nothing found" means these sources had no match, not that nothing exists. Re-scan every 3 months.</p>`;
+ document.querySelectorAll("[data-t]").forEach(b=>b.onclick=()=>{tab=b.dataset.t;render()});
+ document.querySelectorAll("[data-d]").forEach(b=>b.onchange=()=>{F.find(x=>x.id===b.dataset.d).done=b.checked;render();sync()});
+ document.querySelectorAll("[data-c]").forEach(b=>b.onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText($("#t-"+b.dataset.c).textContent);b.textContent=t("copied")});
+ const pc=$("#pc");pc&&(pc.onclick=async()=>{const v=$("#pw").value,o=$("#pr");if(!v)return;if(!(window.crypto&&crypto.subtle)){o.textContent="Needs HTTPS or localhost";return}
+  o.textContent="Checking...";const h=[...new Uint8Array(await crypto.subtle.digest("SHA-1",new TextEncoder().encode(v)))].map(x=>x.toString(16).padStart(2,"0")).join("").toUpperCase();
+  const r=await api("/pwned","POST",{prefix:h.slice(0,5)});if(!r.ok){o.textContent=r.j.error||"Check failed";return}
+  const m=r.j.text.split("\n").map(l=>l.trim().split(":")).find(x=>x[0]===h.slice(5)),c=m?parseInt(m[1],10):0;
+  o.textContent=c>0?`Found in ${c.toLocaleString()} breaches. Stop using it everywhere.`:"Not found in known breaches."});
+ $("#lk").onclick=()=>{lockMode=!lockMode;render()};$("#pdf").onclick=()=>window.print();$("#re").onclick=()=>{view="form";render()};
+}
+function toolkit(){return `<div class="box"><h3>Has my password leaked?</h3><p class="note">Your password never leaves this device. Only the first 5 characters of its hash are sent.</p><label for="pw">Password</label><input id="pw" type="password" autocomplete="off"><p><button class="sm" id="pc">Check</button> <span id="pr" role="status"></span></p></div><div class="box"><h3>Help and reporting (India)</h3><ul><li>Emergency: 112</li><li>Women helpline: 181</li><li>Cyber fraud helpline: 1930</li><li><a href="https://cybercrime.gov.in" target="_blank" rel="noopener">cybercrime.gov.in</a>, report online harassment, stalking and image abuse</li></ul></div>
+<div class="box"><h3>Privacy settings checklist</h3><ul><li>Instagram: private account, hide activity status, turn off location on stories</li><li>WhatsApp: set profile photo, About and last seen to My contacts; turn on two-step verification</li><li>Facebook: run Privacy Checkup, limit past posts, hide friends list</li><li>LinkedIn: limit profile visibility, hide connections</li><li>X: protect posts, turn off location, disable discoverability by phone and email</li></ul></div>
+<div class="box"><h3>Quick habits</h3><ul><li>Use a different password for every account</li><li>Use a separate email for shopping and sign-ups</li><li>Do not share live location publicly</li></ul></div>`}
+
+function exif(buf){const v=new DataView(buf);if(v.byteLength<4||v.getUint16(0)!==0xFFD8)return null;let o=2;
+ while(o<v.byteLength-10){const m=v.getUint16(o),l=v.getUint16(o+2);if(m===0xFFDA||(m&0xFF00)!==0xFF00)break;
+  if(m===0xFFE1&&v.getUint32(o+4)===0x45786966)try{return tiff(v,o+10)}catch(e){return{}}o+=2+l}return{}}
+function tiff(v,b){const le=v.getUint16(b)===0x4949,g16=p=>v.getUint16(p,le),g32=p=>v.getUint32(p,le),SZ={1:1,2:1,3:2,4:4,5:8,7:1,9:4,10:8};
+ const rd=p=>{const ty=g16(p+2),n=g32(p+4),d=(SZ[ty]||1)*n>4?b+g32(p+8):p+8;
+  if(ty===2){let s="";for(let i=0;i<n;i++){const c=v.getUint8(d+i);if(!c)break;s+=String.fromCharCode(c)}return s.trim()}
+  if(ty===5){const r=[];for(let i=0;i<n;i++){const q=g32(d+i*8+4);r.push(q?g32(d+i*8)/q:0)}return r}
+  return ty===3?g16(d):ty===4?g32(d):null};
+ const ifd=p=>{const o={},n=g16(p);for(let i=0;i<n;i++){const e=p+2+i*12;try{o[g16(e)]=rd(e)}catch(x){}}return o};
+ const a=ifd(b+g32(b+4)),x=a[0x8769]!=null?ifd(b+a[0x8769]):{},g=a[0x8825]!=null?ifd(b+a[0x8825]):{};
+ const dd=(r,ref)=>r&&r.length===3?(r[0]+r[1]/60+r[2]/3600)*(/[SW]/.test(ref)?-1:1):null;
+ return{make:a[0x10F],model:a[0x110],software:a[0x131],taken:x[0x9003]||a[0x132],serial:x[0xA431],lat:dd(g[2],g[1]),lon:dd(g[4],g[3])}}
+function guard(a){
+ a.innerHTML=`<h2>${t("guard")}</h2><p class="lead">${t("guardp")}</p><div class="box"><label for="im">${t("pick")}</label><input id="im" type="file" accept="image/*"><div id="gr" aria-live="polite"></div></div>
+ <div class="box"><h3>Before you post</h3><ul><li>Background clues also give you away: street signs, house numbers, school or office logos, vehicle plates, reflections in windows.</li><li>Many apps remove metadata on upload, but sending a photo as a file, by email, or through a cloud link usually keeps it.</li><li>Post after you have left a place, not while you are still there.</li></ul></div>
+ <button class="ghost" id="bk">${t("back")}</button>`;
+ $("#bk").onclick=()=>{view="landing";render()};$("#im").onchange=e=>{const f=e.target.files[0];f&&inspect(f)}}
+async function inspect(f){
+ const r=$("#gr"),url=URL.createObjectURL(f);let m=null,ok=true;
+ try{m=exif(await f.arrayBuffer())}catch(e){ok=false}
+ const out=[];
+ if(m){if(m.lat!=null&&m.lon!=null)out.push([3,`Exact location: ${m.lat.toFixed(5)}, ${m.lon.toFixed(5)}. Anyone with this photo file can find where you were, often to within a few metres.`]);
+  if(m.taken)out.push([2,`Date and time taken: ${esc(m.taken)}. This shows your routine and when you are away.`]);
+  if(m.make||m.model)out.push([2,`Device: ${esc([m.make,m.model].filter(Boolean).join(" "))}.`]);
+  if(m.serial)out.push([2,`Device serial number: ${esc(m.serial)}. It can link photos to you.`]);
+  if(m.software)out.push([1,`Software: ${esc(m.software)}.`])}
+ const top=out.reduce((a,x)=>Math.max(a,x[0]),0),lab=top?t(SEV[top]):t("low");
+ r.innerHTML=`<img class="thumb" src="${url}" alt="Selected photo preview">`+
+ (m===null?`<p class="note">This file type's hidden data can't be read here, but you can still save a clean copy.</p>`:
+  out.length?`<p><span class="chip" style="color:var(--${top===3?"hi":top===2?"md":"lo"})">${lab}</span> Hidden data found. Do not share this photo as it is.</p><ul>${out.map(x=>`<li>${x[1]}</li>`).join("")}</ul>`:`<p><span class="chip" style="color:var(--lo)">${t("low")}</span> No location or device data found in this file. Still check the background before posting.</p>`)+
+ `<p><button id="st">${t("strip")}</button></p><div id="sr"></div>`;
+ $("#st").onclick=async()=>{
+  const sr=$("#sr");sr.textContent="Cleaning...";
+  try{let bm;try{bm=await createImageBitmap(f,{imageOrientation:"from-image"})}catch(e){bm=await createImageBitmap(f)}
+   const c=document.createElement("canvas");c.width=bm.width;c.height=bm.height;c.getContext("2d").drawImage(bm,0,0);
+   const png=f.type==="image/png",ty=png?"image/png":"image/jpeg";
+   const blob=await new Promise(rs=>c.toBlob(rs,ty,.92));
+   let v=exif(await blob.arrayBuffer());const clean=!v||(!v.lat&&!v.make&&!v.model&&!v.taken&&!v.serial);
+   const nm="clean-"+f.name.replace(/\.[^.]+$/,"")+(png?".png":".jpg"),u=URL.createObjectURL(blob);
+   sr.innerHTML=`<p><span class="chip" style="color:var(--lo)">${clean?"Verified":"Done"}</span> ${clean?"Location, time and device details are gone from the new copy.":"Saved a new copy. Check it again before sharing."} Only the picture was kept. Share this copy, not the original.</p><a href="${u}" download="${esc(nm)}"><button>${t("dl")}</button></a>`}
+  catch(e){sr.textContent="This file type can't be cleaned in this browser. Try a JPG or PNG copy (for iPhone HEIC photos, set Camera format to Most Compatible, or take a screenshot of the photo)."}}}
+$("#ha").onclick=()=>{view="account";render()};$("#fab").onclick=()=>{view="sos";render()};
+
+let user=null,scanId=null;
+const api=async(u,m="GET",b)=>{try{const r=await fetch("/api"+u,{method:m,headers:{"Content-Type":"application/json"},body:b?JSON.stringify(b):undefined});return{ok:r.ok,status:r.status,j:await r.json().catch(()=>({}))}}catch(e){return{ok:false,status:0,j:{error:"Server not reachable. Check your connection."}}}};
+
+async function doScan(){const r=await api("/scan","POST",{...D,consent:true});
+ if(!r.ok){if(r.j.error==="Please sign in"){user=null}if(view!=="scan")return;$("#se").innerHTML=`<p>${esc(r.j.error||"Scan failed")}</p><button class="ghost sm" id="eb">${t("back")}</button>`;$("#eb").onclick=()=>{view=user?"form":"account";render()};return}
+ F=build(r.j,D);if(view==="scan"){view="results";tab="f";render();sync()}}
+async function sync(){if(!user)return;const body={score:score(),findings:F.map(x=>({id:x.id,sev:x.sev,done:x.done}))};
+ if(!scanId){const r=await api("/scans","POST",body);if(r.ok)scanId=r.j.id}else await api("/scans/"+scanId,"PATCH",body)}
+async function account(a){
+ if(user){const h=await api("/scans"),sc=h.ok?h.j.scans:[];
+  a.innerHTML=`<h2>Your account</h2><p>${esc(user.email)}</p><div class="box"><h3>Your details</h3><label for="pn">Name (shown to contacts in alerts)</label><input id="pn" value="${esc(user.name||"")}"><label for="pp">Your phone number</label><input id="pp" inputmode="tel" value="${esc(user.phone||"")}"><p><button class="sm" id="sp">Save details</button> <span id="pm" class="note" role="status"></span></p></div><div class="box"><h3>Scan history</h3>${sc.length?sc.map(s=>`<div><div class="row" style="justify-content:space-between"><span>${new Date(s.created_at).toLocaleDateString()}</span><span>Score ${s.score}, ${s.open} still open</span></div><div class="bar" style="margin:4px 0 12px;height:6px"><i style="width:${s.score}%"></i></div></div>`).join(""):'<p class="note">No scans saved yet. Run a scan while signed in.</p>'}<p class="note">Scans save only your score and checklist progress. Your details, contacts and reports are stored encrypted.</p></div>
+  ${privacyBox()}<div class="row"><button class="ghost" id="bk">${t("back")}</button><button class="ghost" id="lo">Sign out</button><button class="ghost" id="dl2">Delete my account and data</button></div>`;
+  $("#bk").onclick=()=>{view="landing";render()};
+  bindPrivacy();$("#sp").onclick=async()=>{const r=await api("/profile","PUT",{name:$("#pn").value,phone:$("#pp").value});if(r.ok){user={...user,...r.j.user};$("#pm").textContent="Saved"}else $("#pm").textContent=r.j.error};
+  $("#lo").onclick=async()=>{if(sos)await stopSos();await api("/logout","POST");LS.del("fs_offline");LS.del("fs_queue");user=null;scanId=null;view="landing";render()};
+  $("#dl2").onclick=async()=>{if(confirm("Delete your account and all saved scans? This cannot be undone.")){if(sos)await stopSos();await api("/me","DELETE");LS.del("fs_offline");LS.del("fs_queue");user=null;scanId=null;view="landing";render()}}}
+ else{a.innerHTML=`<h2>Sign in</h2><div class="box"><label for="ae">${t("email")}</label><input id="ae" type="email" autocomplete="email"><label for="ap">Password (8+ characters)</label><input id="ap" type="password" autocomplete="current-password"><p id="am" class="note" role="alert"></p><div class="row"><button id="li">Sign in</button><button class="ghost" id="rg">Create account</button><button class="ghost" id="bk">${t("back")}</button></div></div>${privacyBox()}`;
+  bindPrivacy();$("#bk").onclick=()=>{view="landing";render()};
+  const go=p=>async()=>{const r=await api(p,"POST",{email:$("#ae").value,password:$("#ap").value});if(r.ok){user=r.j.user;view=F.length?"results":"landing";render();F.length&&sync();recoverSos()}else $("#am").textContent=r.j.error||"Something went wrong"};
+  $("#li").onclick=go("/login");$("#rg").onclick=go("/register")}}
+api("/me").then(r=>{if(r.ok){user=r.j.user;render();recoverSos()}});
+
+/* ---------- Safe walking routes (live geocoding + routing) ---------- */
+async function routesView(a){
+ a.innerHTML=`<h2>Safe walking routes</h2><p class="lead">Compare walking routes and nearby mapped amenities. This is not a guarantee that a route is safe.</p>
+ <div class="box"><label for="ro">Starting point</label><div class="row"><input id="ro" value="Current location" placeholder="Current location or address" style="flex:1;min-width:220px"><button class="ghost sm" id="rhere">Use my location</button></div>
+ <label for="rd">Destination</label><input id="rd" placeholder="Address, landmark or place"><label for="rrank">Rank routes by</label><select id="rrank"><option value="amenities">Nearby amenities</option><option value="speed">Fastest</option></select><div class="row" style="margin-top:14px"><button id="rfind">Find walking routes</button><button class="ghost" id="rshare">Share current location</button></div><p class="note" id="rmsg" role="status"></p></div><div id="rout"></div>
+ <div class="box"><h3>Important safety note</h3><p class="note">Route and place data come from OpenStreetMap-based public services and may be incomplete or delayed. The amenity count does not measure crime, lighting, crowd levels or whether a place is open. If you are in immediate danger, call 112 (India).</p><div class="row"><a href="tel:112"><button class="call">Call 112</button></a><a href="tel:181"><button class="ghost">Women helpline 181</button></a></div></div>`;
+ const msg=$('#rmsg'),out=$('#rout');let here=null;
+ $('#rhere').onclick=async()=>{msg.textContent='Requesting browser location permission…';const p=await getPos();if(!p){msg.textContent='Could not get location. Allow location access or enter a starting address.';return}here={lat:p.lat,lon:p.lon};$('#ro').value='Current location';msg.textContent='Current location ready (accuracy about '+Math.round(p.acc||0)+' m).'};
+ $('#rshare').onclick=async()=>{const p=await getPos();if(!p){msg.textContent='Location unavailable. Allow location access first.';return}const u=`https://www.openstreetmap.org/?mlat=${p.lat}&mlon=${p.lon}#map=17/${p.lat}/${p.lon}`;try{if(navigator.share)await navigator.share({title:'My SafeHer location',text:'My current location',url:u});else{await navigator.clipboard.writeText(u);msg.textContent='Location link copied.'}}catch(e){if(e.name!=='AbortError')msg.textContent='Share was cancelled or unavailable.'}};
+ async function geocode(q){const url='https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&q='+encodeURIComponent(q);const r=await fetch(url,{headers:{Accept:'application/json'}});if(!r.ok)throw Error('Place lookup service unavailable. Try again shortly.');const j=await r.json();if(!j.length)throw Error('Could not find “'+q+'”. Try a more specific address or landmark.');return {lat:+j[0].lat,lon:+j[0].lon,label:j[0].display_name}}
+ $('#rfind').onclick=async()=>{const dest=$('#rd').value.trim(),orig=$('#ro').value.trim();if(!dest){msg.textContent='Enter a destination first.';return}msg.textContent='Finding places and calculating walking routes…';out.innerHTML='';$('#rfind').disabled=true;
+ try{let start;if(!orig||/^current location$/i.test(orig)){const p=await getPos();if(!p)throw Error('Could not get your location. Allow location access or type a starting point.');start={lat:p.lat,lon:p.lon,label:'Current location'}}else start=await geocode(orig);const end=await geocode(dest);
+ const u=`https://routing.openstreetmap.de/routed-foot/route/v1/foot/${start.lon},${start.lat};${end.lon},${end.lat}?overview=full&geometries=geojson&alternatives=3&steps=false`;let rr=await fetch(u);if(!rr.ok)throw Error('Routing service is unavailable. Try again shortly.');let data=await rr.json();if(data.code!=='Ok'||!data.routes?.length)throw Error('No walking route found for these places.');
+ let rs=data.routes.slice();
+ // Query mapped amenities near the route endpoints; if Overpass fails, explicitly show unknown, never a safety score.
+ let amenities={police:'unknown',shops:'unknown'};try{const q=`[out:json][timeout:8];(node(around:1200,${start.lat},${start.lon})["amenity"="police"];way(around:1200,${start.lat},${start.lon})["amenity"="police"];node(around:1200,${start.lat},${start.lon})["shop"];way(around:1200,${start.lat},${start.lon})["shop"];node(around:1200,${end.lat},${end.lon})["amenity"="police"];way(around:1200,${end.lat},${end.lon})["amenity"="police"];node(around:1200,${end.lat},${end.lon})["shop"];way(around:1200,${end.lat},${end.lon})["shop"];);out ids;`;const ar=await fetch('https://overpass-api.de/api/interpreter',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'data='+encodeURIComponent(q),signal:AbortSignal.timeout(9000)});if(ar.ok){const aj=await ar.json();amenities={police:new Set(aj.elements.filter(e=>e.tags?.amenity==='police').map(e=>e.type+e.id)).size,shops:new Set(aj.elements.filter(e=>e.tags?.shop).map(e=>e.type+e.id)).size}}}catch{}
+ if($('#rrank').value==='amenities'){for(const route of rs){try{const pts=route.geometry?.coordinates||[],sample=pts.filter((_,i)=>i===0||i===pts.length-1||i%Math.max(1,Math.floor(pts.length/5))===0).slice(0,7);const clauses=sample.map(([lon,lat])=>`node(around:350,${lat},${lon})[\"amenity\"=\"police\"];way(around:350,${lat},${lon})[\"amenity\"=\"police\"];node(around:350,${lat},${lon})[\"shop\"];way(around:350,${lat},${lon})[\"shop\"];`).join('');const ar=await fetch('https://overpass-api.de/api/interpreter',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'data='+encodeURIComponent(`[out:json][timeout:8];(${clauses});out ids;`),signal:AbortSignal.timeout(9000)});if(ar.ok){const aj=await ar.json();route.amenityScore=new Set(aj.elements.map(e=>e.type+e.id)).size}else route.amenityScore=-1}catch{route.amenityScore=-1}}rs.sort((x,y)=>(y.amenityScore??-1)-(x.amenityScore??-1)||x.duration-y.duration)}else rs.sort((x,y)=>x.duration-y.duration);
+ const draw=r=>{const pts=r.geometry?.coordinates||[];if(pts.length<2)return '<p class="note">Route preview unavailable.</p>';const xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]),minX=Math.min(...xs),maxX=Math.max(...xs),minY=Math.min(...ys),maxY=Math.max(...ys);return `<svg viewBox="0 0 600 180" role="img" aria-label="Route shape preview" style="width:100%;height:auto;background:#f3f6f8;border-radius:12px"><polyline fill="none" stroke="#d83b83" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" points="${pts.map(p=>`${20+(p[0]-minX)/(maxX-minX||1)*560},${160-(p[1]-minY)/(maxY-minY||1)*140}`).join(' ')}"/></svg>`};
+ out.innerHTML=`<div class="box"><h3>Route results</h3><p class="note">From ${esc(start.label)} to ${esc(end.label)}</p><p class="note">Nearby mapped police stations: ${amenities.police}; shops: ${amenities.shops}. Counts may be incomplete and do not indicate route safety. Routes are ranked using amenities mapped along each route when available; otherwise speed is the fallback.</p>${rs.map((r,i)=>`<div class="box" style="margin:12px 0;padding:16px"><div class="row" style="justify-content:space-between"><b>${i===0?($('#rrank').value==='speed'?'Fastest match':'Top-ranked route'):'Alternative '+(i+1)}${r.amenityScore>=0?' · '+r.amenityScore+' mapped amenities':''}</b><span class="chip">${(r.distance/1000).toFixed(2)} km · ${Math.max(1,Math.round(r.duration/60))} min</span></div>${draw(r)}<p class="note">Estimated walking time; actual conditions may differ.</p><a target="_blank" rel="noopener" href="https://www.openstreetmap.org/directions?engine=fossgis_osrm_foot&route=${start.lat}%2C${start.lon}%3B${end.lat}%2C${end.lon}"><button class="sm">Open walking directions</button></a></div>`).join('')}<div class="row"><button class="ghost sm" id="rtxt">Prepare route message for contacts</button></div><p class="note" id="rtmsg"></p></div>`;
+ $('#rtxt').onclick=async()=>{const text=`SafeHer route: ${start.label} to ${end.label}. Approx. ${(rs[0].distance/1000).toFixed(2)} km, ${Math.max(1,Math.round(rs[0].duration/60))} min. Directions: https://www.openstreetmap.org/directions?engine=fossgis_osrm_foot&route=${start.lat}%2C${start.lon}%3B${end.lat}%2C${end.lon}`;const cr=await api('/contacts');const cs=cr.ok?cr.j.contacts:[];const nums=cs.map(c=>c.phone).join(',');const sms='sms:'+nums+'?body='+encodeURIComponent(text);$('#rtmsg').innerHTML=cs.length?`<a href="${esc(sms)}">Open SMS with route for ${cs.length} saved contact(s)</a>. You must press Send in your messaging app.`:`Add trusted contacts first, or copy this route message: <button class="ghost sm" id="rcopy">Copy message</button>`;if(!cs.length)$('#rcopy').onclick=()=>navigator.clipboard.writeText(text)};
+ msg.textContent='Route data loaded. Check the actual conditions before walking.';
+ }catch(e){msg.textContent=e.message||'Could not calculate routes.'}finally{$('#rfind').disabled=false}};
+}
+const NAV=[["landing","Footprint scan"],["sos","SOS"],["routes","🧭 Safe routes"],["msg","Message check"],["guard","Photo guard"],["reports","Reports"],["contacts","Contacts"]];
+let sos=null,watch=null,lastPush=0,cd=null;
+function navBar(){const cur=["consent","form","scan","results"].includes(view)?"landing":view;
+ $("#nav").innerHTML=NAV.map(([v,l])=>`<button ${v===cur?'aria-current="page"':""} data-v="${v}">${l}</button>`).join("");
+ $("#nav").querySelectorAll("button").forEach(b=>b.onclick=()=>{view=b.dataset.v;render()});$("#fab").classList.toggle("hide",view==="sos")}
+const needLogin=(a,why)=>{a.innerHTML=`<h2>Sign in required</h2><div class="box"><p>Sign in to ${why}.</p><button id="nl">Sign in</button></div>`;$("#nl").onclick=()=>{view="account";render()}};
+let lastPos=null,geoErr="";
+const GEOMSG={denied:"Location is blocked in your browser, so your contacts will not see where you are. Allow location for this site in your browser settings.",unavailable:"Your phone could not get a location right now.",timeout:"Getting your location took too long."};
+const getPos=()=>new Promise(res=>{if(!navigator.geolocation){geoErr="unavailable";return res(null)}
+ navigator.geolocation.getCurrentPosition(p=>{geoErr="";lastPos={lat:p.coords.latitude,lon:p.coords.longitude,acc:p.coords.accuracy,at:Date.now()};res(p.coords)},e=>{geoErr=({1:"denied",2:"unavailable",3:"timeout"})[e.code]||"unavailable";res(null)},{enableHighAccuracy:true,timeout:8000})});
+const trackLink=()=>`${location.origin}/track.html?t=${sos.token}`;
+const alertText=()=>`${user&&user.name?user.name+": ":""}I need help. Track my live location: ${trackLink()}`;
+async function sosView(a){
+ if(user)api("/contacts").then(x=>x.ok&&cacheContacts(x.j.contacts));
+ if(user&&!sos){const r=await api("/sos/active");if(r.ok&&r.j.sos){sos=r.j.sos;trackWatch()}}
+ if(sos){const r=await api("/contacts"),cached=(LS.get("fs_offline")||{}).contacts||[];
+  CS=(r.ok?r.j.contacts:cached).map((c,i)=>({...c,id:c.id??"c"+i}));
+  a.innerHTML=`<h2>${sos.kind==="sos"?"SOS is active":"Location sharing is on"}</h2>
+  <div class="box"><h3>Status</h3><div id="sr"></div><div id="sa"></div></div>
+  <div class="box"><h3>Sharing controls</h3><p>Who can see you: <b>anyone who has the link</b>, without signing in. Sharing ends automatically <b id="exa"></b>.</p><div class="row"><button class="ghost sm" id="ext">Add 30 minutes</button><button class="sm" id="stp2">Stop sharing now</button></div><p class="note" id="exm" role="status"></p><p class="note">Stopping closes the link straight away and deletes the location points stored on the server. Anyone who opens it afterwards sees that you stopped sharing.</p></div>
+  <div class="box"><h3>Alert your contacts</h3><div class="callout"><p>Your contacts have not been told yet. This app cannot send texts or WhatsApp messages for you. The buttons below only open WhatsApp or your SMS app with the message ready, and you must press Send there.</p></div><div id="alerts"></div>
+  <div class="row"><button class="ghost sm" id="shr">Share link</button><button class="ghost sm" id="cpy">Copy link</button></div><p class="note" style="word-break:break-all">${esc(trackLink())}</p></div>
+  <div class="row"><a href="tel:112"><button class="call">Call 112</button></a><a href="tel:181"><button class="ghost">Call 181</button></a><button class="ghost" id="stp">I am safe, stop sharing</button></div>`;
+  paint();paintAlerts();clearInterval(uiT);uiT=setInterval(paint,1000);
+  $("#shr").onclick=()=>navigator.share?navigator.share({text:alertText()}).catch(()=>{}):($("#cpy").click());
+  $("#cpy").onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText(alertText());$("#cpy").textContent="Copied"};
+  $("#stp").onclick=async()=>{await stopSos(true);render()};$("#stp2").onclick=$("#stp").onclick;
+  $("#ext").onclick=async()=>{const x=await api("/sos/"+sos.id+"/extend","POST");if(x.ok){sos.expires_at=x.j.expires_at;$("#exm").textContent="Sharing now ends at "+new Date(sos.expires_at).toLocaleTimeString()+".";paint();paintBar(true)}else $("#exm").textContent=x.j.error||"Could not extend"};return}
+ a.innerHTML=`<h2>Emergency</h2>${endNote?`<div class="callout" role="status"><p>${esc(endNote)}</p></div>`:""}<p class="lead">Press SOS if you feel unsafe. You get 5 seconds to cancel.</p>
+ ${queueBanner()}<button class="sosb" id="sosb">SOS</button><div id="cd" aria-live="assertive" style="text-align:center"></div>
+ <div class="row" style="justify-content:center"><a href="tel:112"><button class="call">Call 112</button></a><a href="tel:181"><button class="ghost">Women helpline 181</button></a>${user?'<button class="ghost" id="shw">Share live location (no alarm)</button>':""}</div>
+ <div class="row" style="justify-content:center;margin-top:12px"><button class="ghost" id="vb"></button></div><p class="note" id="vn" role="status" style="text-align:center"></p>
+ <p class="note" style="text-align:center">${user?"SOS creates a public live tracking link: anyone who has it can see where you are. It stops by itself after 4 hours, or sooner when you stop it.":"Not signed in: SOS will share your one-time location from your phone. Sign in to alert contacts with a live tracking link."}</p>
+ <div class="box"><h3>If you feel unsafe</h3><ul><li>Move toward people, lit areas, shops or a police station.</li><li>Share your live location before you travel at night.</li><li>Location needs your browser's permission and works best over HTTPS.</li></ul></div>`;
+ $("#sosb").onclick=startCountdown;
+ endNote="";const sh=$("#shw");sh&&(sh.onclick=async()=>{const c=await askShareConsent();if(!c)return;LS.set("fs_dur",c.minutes);const e=await startSos("share",c.minutes);e?alert(e):render()});bindBanner();bindVoice()}
+const MT={
+en:{title:"Suspicious message check",lead:"Paste a message, SMS or chat in English, Hindi, Marathi or Hinglish. It is checked on your device and never sent to a server unless you choose to share feedback.",lab:"Message",btn:"Check message",ex:"Try an example",clear:"Clear",
+ lv:{high:"High risk",med:"Medium risk",low:"Low risk",none:"No warning signs found"},lang:{en:"English",hi:"Hindi",mr:"Marathi",hinglish:"Hinglish"},detected:"Language detected",
+ ev:"Evidence in the message",evh:"Highlighted parts triggered a warning. Numbers match the reasons below.",why:"Why it was flagged",found:"Found",notprob:"Not a problem",muted:"Ignoring {n} warning type(s) you marked as fine.",reset:"Reset",
+ links:"Links in this message",linkn:"Check the domain carefully. Scammers copy real names: sbi-kyc-update.xyz is not SBI.",
+ save:"Save as safety report",saved:"Saved to Reports",
+ fbq:"Was this result right?",fbok:"Yes, correct",fbmiss:"No, it IS a scam",fbfalse:"No, it is safe",fbc:"Tell us what was wrong (optional)",fbtext:"Include the message text so the rules can be fixed (it will be stored encrypted)",fbsend:"Send feedback",fbskip:"Skip",fbthanks:"Thank you. Your feedback helps improve the checks.",fbfail:"Could not send feedback right now.",
+ a1:"Do not reply, click links, or share OTPs, photos or money.",a2:"Take screenshots as evidence, then block the sender.",a3:"Report it at cybercrime.gov.in or call 1930.",a4:"Do not pay. Report to cybercrime.gov.in, call 1930 or 181, and use StopNCII.org to stop images spreading.",a5:"This check is a rough guide. If something feels off, verify through an official number you look up yourself.",a6:"Even a low score is not a guarantee of safety. Trust your instinct."},
+hi:{title:"संदिग्ध संदेश जांच",lead:"अंग्रेज़ी, हिंदी, मराठी या हिंग्लिश में कोई संदेश, SMS या चैट पेस्ट करें। जांच आपके डिवाइस पर होती है। फीडबैक भेजने का चुनाव करने पर ही कुछ सर्वर तक जाता है।",lab:"संदेश",btn:"संदेश जांचें",ex:"उदाहरण आज़माएं",clear:"साफ़ करें",
+ lv:{high:"ज़्यादा खतरा",med:"मध्यम खतरा",low:"कम खतरा",none:"कोई चेतावनी संकेत नहीं मिला"},lang:{en:"अंग्रेज़ी",hi:"हिंदी",mr:"मराठी",hinglish:"हिंग्लिश"},detected:"पहचानी गई भाषा",
+ ev:"संदेश में सबूत",evh:"हाइलाइट किए हिस्सों ने चेतावनी दी। नंबर नीचे दिए कारणों से मेल खाते हैं।",why:"क्यों चिह्नित हुआ",found:"मिला",notprob:"यह ठीक है",muted:"आपके ठीक बताए {n} चेतावनी प्रकार अनदेखे किए जा रहे हैं।",reset:"रीसेट",
+ links:"इस संदेश की लिंक",linkn:"डोमेन ध्यान से देखें। ठग असली नाम की नकल करते हैं, जैसे sbi-kyc-update.xyz, SBI नहीं है।",
+ save:"सुरक्षा रिपोर्ट के रूप में सहेजें",saved:"रिपोर्ट में सहेजा गया",
+ fbq:"क्या यह नतीजा सही था?",fbok:"हां, सही",fbmiss:"नहीं, यह ठगी है",fbfalse:"नहीं, यह सुरक्षित है",fbc:"क्या गलत था? (वैकल्पिक)",fbtext:"नियम सुधारने के लिए संदेश का पाठ शामिल करें (एन्क्रिप्ट करके रखा जाएगा)",fbsend:"फीडबैक भेजें",fbskip:"छोड़ें",fbthanks:"धन्यवाद। आपका फीडबैक जांच बेहतर बनाने में मदद करेगा।",fbfail:"अभी फीडबैक नहीं भेज सके।",
+ a1:"जवाब न दें, लिंक न खोलें, OTP, फोटो या पैसे न भेजें।",a2:"सबूत के लिए स्क्रीनशॉट लें, फिर भेजने वाले को ब्लॉक करें।",a3:"cybercrime.gov.in पर शिकायत करें या 1930 पर कॉल करें।",a4:"पैसे न दें। cybercrime.gov.in पर शिकायत करें, 1930 या 181 पर कॉल करें और तस्वीरें फैलने से रोकने के लिए StopNCII.org का उपयोग करें।",a5:"यह जांच सिर्फ एक मोटा अंदाज़ा है। कुछ गड़बड़ लगे तो खुद आधिकारिक नंबर खोजकर पुष्टि करें।",a6:"कम स्कोर का मतलब पूरी सुरक्षा नहीं है। अपनी समझ पर भरोसा रखें।"},
+mr:{title:"संशयास्पद संदेश तपासणी",lead:"इंग्रजी, हिंदी, मराठी किंवा हिंग्लिशमधील संदेश, SMS किंवा चॅट पेस्ट करा. तपासणी तुमच्या डिव्हाइसवर होते. फीडबॅक पाठवायचे ठरवले तरच काही सर्व्हरकडे जाते.",lab:"संदेश",btn:"संदेश तपासा",ex:"उदाहरण पहा",clear:"पुसा",
+ lv:{high:"जास्त धोका",med:"मध्यम धोका",low:"कमी धोका",none:"कोणतेही इशारे आढळले नाहीत"},lang:{en:"इंग्रजी",hi:"हिंदी",mr:"मराठी",hinglish:"हिंग्लिश"},detected:"ओळखलेली भाषा",
+ ev:"संदेशातील पुरावा",evh:"हायलाइट केलेल्या भागांमुळे इशारा मिळाला. क्रमांक खालील कारणांशी जुळतात.",why:"का चिन्हांकित झाले",found:"आढळले",notprob:"हे ठीक आहे",muted:"तुम्ही ठीक म्हटलेले {n} इशारे दुर्लक्षित केले जात आहेत.",reset:"रीसेट",
+ links:"या संदेशातील लिंक",linkn:"डोमेन नीट पाहा. ठग खऱ्या नावांची नक्कल करतात, उदा. sbi-kyc-update.xyz म्हणजे SBI नाही.",
+ save:"सुरक्षा अहवाल म्हणून जतन करा",saved:"अहवालात जतन केले",
+ fbq:"हा निकाल बरोबर होता का?",fbok:"होय, बरोबर",fbmiss:"नाही, ही फसवणूक आहे",fbfalse:"नाही, हे सुरक्षित आहे",fbc:"काय चुकले? (ऐच्छिक)",fbtext:"नियम सुधारण्यासाठी संदेशाचा मजकूर समाविष्ट करा (एन्क्रिप्ट करून ठेवला जाईल)",fbsend:"फीडबॅक पाठवा",fbskip:"वगळा",fbthanks:"धन्यवाद. तुमचा फीडबॅक तपासणी सुधारायला मदत करेल.",fbfail:"आत्ता फीडबॅक पाठवता आला नाही.",
+ a1:"उत्तर देऊ नका, लिंक उघडू नका, OTP, फोटो किंवा पैसे पाठवू नका.",a2:"पुराव्यासाठी स्क्रीनशॉट घ्या, मग प्रेषकाला ब्लॉक करा.",a3:"cybercrime.gov.in वर तक्रार करा किंवा 1930 वर कॉल करा.",a4:"पैसे देऊ नका. cybercrime.gov.in वर तक्रार करा, 1930 किंवा 181 वर कॉल करा आणि फोटो पसरू नयेत म्हणून StopNCII.org वापरा.",a5:"ही तपासणी फक्त ढोबळ अंदाज आहे. काही खटकले तर अधिकृत नंबर स्वतः शोधून खात्री करा.",a6:"कमी स्कोअर म्हणजे पूर्ण सुरक्षितता नव्हे. तुमच्या अंतर्मनावर विश्वास ठेवा."}};
+const mt=k=>(MT[L]&&MT[L][k])||MT.en[k];
+const MSAMPLES=["Dear customer, your SBI account will be blocked today. Update KYC immediately at http://sbi-kyc-update.xyz and share the OTP you receive.","आपका खाता बंद हो जाएगा। तुरंत केवाईसी अपडेट करें और OTP बताएं। bit.ly/kyc-now","Aapka parcel customs me ruka hai. Digital arrest se bachna hai to turant Rs 20000 UPI karo aur kisi ko mat batao."];
+let mcLast=null,mcEx=0;
+function msgView(a){
+ const muted=LS.get("mc_muted")||[];
+ a.innerHTML=`<h2>${esc(mt("title"))}</h2><p class="lead">${esc(mt("lead"))}</p><div class="box"><label for="mt">${esc(mt("lab"))}</label><textarea id="mt" maxlength="3000">${mcLast?esc(mcLast.text):""}</textarea><p class="row" style="gap:8px"><button id="mc">${esc(mt("btn"))}</button><button class="ghost sm" id="mex" type="button">${esc(mt("ex"))}</button><button class="ghost sm" id="mclr" type="button">${esc(mt("clear"))}</button></p><div id="mr" aria-live="polite"></div></div>`;
+ const run=()=>{const m=$("#mt").value.trim();if(!m){$("#mr").innerHTML="";mcLast=null;return}
+  const res=MC.analyze(m,{muted:LS.get("mc_muted")||[]});mcLast={text:m,res,fb:false};showMsgResult()};
+ $("#mc").onclick=run;
+ $("#mex").onclick=()=>{$("#mt").value=MSAMPLES[mcEx++%MSAMPLES.length];run()};
+ $("#mclr").onclick=()=>{$("#mt").value="";mcLast=null;$("#mr").innerHTML=""};
+ if(mcLast)showMsgResult();
+}
+function highlightHtml(text,res){
+ let o="",p=0;
+ res.marks.forEach(k=>{o+=esc(text.slice(p,k.s));const h=res.hits[k.top],nums=k.ids.map(i=>i+1).join(",");
+  o+=`<mark class="mk ${h.w>=3?"mk3":"mk2"}" title="${esc(h.msg[L]||h.msg.en)}">${esc(text.slice(k.s,k.e))}<sup>${nums}</sup></mark>`;p=k.e});
+ return o+esc(text.slice(p));
+}
+function showMsgResult(){
+ const{text,res}=mcLast,lv=res.level,col={high:"hi",med:"md",low:"lo",none:"lo"}[lv],muted=LS.get("mc_muted")||[];
+ const black=res.hits.some(h=>h.id==="blackmail"),adv=[];
+ if(lv==="high"||lv==="med")adv.push(mt("a1"),mt("a2"),mt("a3"));
+ if(black)adv.push(mt("a4"));
+ if(lv==="low"||lv==="none")adv.push(mt("a5"));if(lv==="low")adv.push(mt("a6"));
+ const urls=MC.links(text),snip=h=>h.spans.slice(0,3).map(s=>text.slice(s[0],s[1]).trim()).filter(Boolean);
+ $("#mr").innerHTML=`<p><span class="chip" style="color:var(--${col})">${esc(mt("lv")[lv])}</span> <span class="note">${esc(mt("detected"))}: ${esc(mt("lang")[res.lang])}</span></p>
+ ${res.hits.length?`<h3>${esc(mt("ev"))}</h3><p class="note">${esc(mt("evh"))}</p><div class="hl" lang="${res.lang==="hi"?"hi":res.lang==="mr"?"mr":"en"}">${highlightHtml(text,res)}</div>
+ <h3>${esc(mt("why"))}</h3><ol class="why">${res.hits.map((h,i)=>`<li><b>${esc(MC.CATS[h.cat][L]||MC.CATS[h.cat].en)}.</b> ${esc(h.msg[L]||h.msg.en)}<br><span class="note">${esc(mt("found"))}: ${snip(h).map(x=>"“"+esc(x.length>70?x.slice(0,70)+"…":x)+"”").join(", ")}</span> <button class="ghost sm np" data-id="${h.id}" type="button">${esc(mt("notprob"))}</button></li>`).join("")}</ol>`:""}
+ ${muted.length?`<p class="note">${esc(mt("muted").replace("{n}",muted.length))} <button class="ghost sm" id="mrs" type="button">${esc(mt("reset"))}</button></p>`:""}
+ ${urls.length?`<h3>${esc(mt("links"))}</h3><ul>${urls.map(u=>`<li><code>${esc(u)}</code></li>`).join("")}</ul><p class="note">${esc(mt("linkn"))}</p>`:""}
+ <ul>${adv.map(x=>"<li>"+esc(x)+"</li>").join("")}</ul>
+ <p><button class="ghost sm" id="sv" type="button">${esc(mt("save"))}</button> <span id="sm" class="note" role="status"></span></p>
+ <div class="fb" id="fb"></div>`;
+ document.querySelectorAll(".np").forEach(b=>b.onclick=()=>{const id=b.dataset.id,m=LS.get("mc_muted")||[];if(!m.includes(id))m.push(id);LS.set("mc_muted",m);
+  sendFeedback({verdict:"false_alarm",level:lv,rules:[id],lang:res.lang},true);mcLast.res=MC.analyze(text,{muted:m});mcLast.fb=false;showMsgResult()});
+ const rs=$("#mrs");rs&&(rs.onclick=()=>{LS.del("mc_muted");mcLast.res=MC.analyze(text,{});mcLast.fb=false;showMsgResult()});
+ $("#sv").onclick=async()=>{if(!user){view="account";return render()}const r=await api("/reports","POST",{type:"Suspicious message",place:"",description:`Risk: ${MT.en.lv[lv]}\nFlags: ${res.hits.map(h=>h.id).join(", ")||"none"}\n\n${text}`});$("#sm").textContent=r.ok?mt("saved"):r.j.error};
+ renderFeedback();
+}
+async function sendFeedback(b,quiet){const r=await api("/feedback","POST",b);if(!quiet){const s=$("#fbs");s&&(s.textContent=r.ok?mt("fbthanks"):mt("fbfail"))}return r.ok}
+function renderFeedback(){
+ const f=$("#fb");if(!f)return;const{text,res}=mcLast;
+ if(mcLast.fb){f.innerHTML=`<p class="note" role="status">${esc(mt("fbthanks"))}</p>`;return}
+ f.innerHTML=`<h3>${esc(mt("fbq"))}</h3><div class="row" style="gap:8px;flex-wrap:wrap"><button class="ghost sm" data-v="correct" type="button">${esc(mt("fbok"))}</button><button class="ghost sm" data-v="missed_scam" type="button">${esc(mt("fbmiss"))}</button><button class="ghost sm" data-v="false_alarm" type="button">${esc(mt("fbfalse"))}</button></div><div id="fbf"></div>`;
+ f.querySelectorAll("[data-v]").forEach(b=>b.onclick=()=>{const v=b.dataset.v;
+  if(v==="correct"){sendFeedback({verdict:v,level:res.level,rules:res.hits.map(h=>h.id),lang:res.lang},true).then(()=>{mcLast.fb=true;renderFeedback()});return}
+  $("#fbf").innerHTML=`<label for="fbc">${esc(mt("fbc"))}</label><textarea id="fbc" maxlength="500" style="min-height:70px"></textarea><label class="chk"><input type="checkbox" id="fbt"><span>${esc(mt("fbtext"))}</span></label><p class="row" style="gap:8px"><button class="sm" id="fbsend" type="button">${esc(mt("fbsend"))}</button><button class="ghost sm" id="fbskip" type="button">${esc(mt("fbskip"))}</button> <span id="fbs" class="note" role="status"></span></p>`;
+  $("#fbskip").onclick=()=>{$("#fbf").innerHTML=""};
+  $("#fbsend").onclick=async()=>{const inc=$("#fbt").checked,ok=await sendFeedback({verdict:v,level:res.level,rules:res.hits.map(h=>h.id),lang:res.lang,comment:$("#fbc").value,include_text:inc,text:inc?text:""});if(ok){mcLast.fb=true;renderFeedback()}}})}
+let rFilter="",rMsg="";
+const pad2=n=>String(n).padStart(2,"0"),toLocalInput=d=>`${d.getFullYear()}-${pad2(d.getMonth()+1)}-${pad2(d.getDate())}T${pad2(d.getHours())}:${pad2(d.getMinutes())}`;
+const fmtBytes=n=>n<1024?n+" B":n<1048576?Math.round(n/1024)+" KB":(n/1048576).toFixed(1)+" MB";
+const readB64=f=>new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(String(r.result).split(",")[1]||"");r.onerror=()=>rej(r.error);r.readAsDataURL(f)});
+const readUrl=b=>new Promise(res=>{const r=new FileReader();r.onload=()=>res(String(r.result));r.onerror=()=>res("");r.readAsDataURL(b)});
+async function uploadEvidence(id,files){const bad=[];for(const f of files){if(f.size>2*1048576){bad.push(f.name+": larger than 2 MB");continue}
+ try{const r=await api("/reports/"+id+"/evidence","POST",{name:f.name,mime:f.type,data:await readB64(f)});if(!r.ok)bad.push(f.name+": "+(r.j.error||"upload failed"))}catch{bad.push(f.name+": could not be read")}}return bad}
+const evHtml=x=>{const fs=x.files.map(f=>{const u=`/api/reports/${x.id}/evidence/${f.id}`,img=f.mime.startsWith("image/");
+ return `<span class="ev">${img?`<a href="${u}" target="_blank" rel="noopener"><img class="thumb" src="${u}" alt="Evidence photo ${esc(f.name)}"></a>`:""}<a href="${u}" target="_blank" rel="noopener">${esc(f.name)}</a> <span class="note">${fmtBytes(f.size)}</span><button class="ghost sm" data-df="${x.id}:${f.id}" aria-label="Remove file ${esc(f.name)}">Remove</button></span>`}).join("");
+ return (x.evidence?`<p style="white-space:pre-wrap;margin:.3em 0"><b>Evidence notes:</b> ${esc(x.evidence)}</p>`:"")+(fs?`<div>${fs}</div>`:"")};
+async function reportsView(a){
+ if(!user)return needLogin(a,"save private, encrypted safety reports");
+ const r=await api("/reports"),all=r.ok?r.j.reports:[],CATS=r.ok?r.j.categories:["Other"],L=rFilter?all.filter(x=>x.type===rFilter):all,now=toLocalInput(new Date()),msg=rMsg;rMsg="";
+ a.innerHTML=`<h2>Safety reports</h2><p class="lead">Record incidents so you have details ready for a complaint. Only you can read them.</p>${msg?`<div class="callout" role="status"><p>${esc(msg)}</p></div>`:""}
+ <div class="box"><h3>New incident report</h3><label for="rt">Incident category</label><select id="rt">${CATS.map(x=>`<option>${esc(x)}</option>`).join("")}</select>
+ <label for="rdt">Date and time it happened</label><input id="rdt" type="datetime-local" value="${now}" max="${now}">
+ <label for="rp">Place (optional)</label><input id="rp" maxlength="200"><label for="rd">What happened</label><textarea id="rd" maxlength="3000"></textarea>
+ <h3 style="margin-top:20px">Evidence (optional)</h3><label for="ren">Evidence notes</label><textarea id="ren" maxlength="2000" style="min-height:80px" placeholder="For example: sender's number or username, vehicle number, witnesses, links, what a screenshot shows"></textarea>
+ <label for="rf">Attach photos, screenshots or a PDF</label><input id="rf" type="file" multiple accept="image/jpeg,image/png,image/webp,image/gif,application/pdf">
+ <p class="note">Up to 3 files per report, 2 MB each. They are stored encrypted and only you can open them. Files are kept exactly as you upload them, including any hidden location or device details, which can help a complaint. Clean a photo with Photo guard before posting it anywhere public.</p>
+ <p><button id="rs">Save report</button> <span id="rm" class="note" role="status"></span></p></div>
+ <div class="box"><h3>Your reports (${L.length}${rFilter?" of "+all.length:""})</h3><div class="row"><label for="rfl" class="note" style="margin:0">Show</label><select id="rfl"><option value="">All categories</option>${CATS.map(x=>`<option ${x===rFilter?"selected":""}>${esc(x)}</option>`).join("")}</select>
+ <button class="ghost sm" id="rpdf" ${L.length?"":"disabled"}>Save shown reports as PDF</button><a href="/api/reports/export.csv" download="safeher-reports.csv"><button class="ghost sm" type="button">Download all as CSV</button></a></div>
+ <p class="note">PDF opens a print page: choose "Save as PDF". It includes photos you attached. CSV lists every report with its file names.</p></div>
+ ${L.map(x=>`<div class="f"><span class="tag">${esc(x.type)}</span> <span class="note">Happened ${new Date(x.incident_at).toLocaleString()}${x.place?" · "+esc(x.place):""}</span><p style="white-space:pre-wrap;margin:.3em 0">${esc(x.description)}</p>${evHtml(x)}
+ <div class="row" style="margin-top:8px"><span class="note">Recorded ${new Date(x.created_at).toLocaleString()}</span>${x.files.length<3?`<button class="ghost sm" data-af="${x.id}">Add file</button>`:""}<button class="ghost sm" data-pdf="${x.id}">Export PDF</button><button class="ghost sm" data-r="${x.id}">Delete</button></div></div>`).join("")}
+ <input type="file" id="raf" class="hide" accept="image/jpeg,image/png,image/webp,image/gif,application/pdf" aria-label="Add evidence file">
+ <p class="note">To file a complaint: cybercrime.gov.in (online abuse), 112 or your local police station (physical threats), 181 for women helpline support.</p>`;
+ $("#rs").onclick=async()=>{const m=$("#rm"),d=$("#rd").value.trim(),fl=[...$("#rf").files];
+  if(!d){m.textContent="Please describe what happened";return}if(fl.length>3){m.textContent="Choose up to 3 files";return}
+  const dt=$("#rdt").value?new Date($("#rdt").value):new Date();if(isNaN(dt)||dt.getTime()>Date.now()+6e4*5){m.textContent="Enter a date and time that is not in the future";return}
+  $("#rs").disabled=true;m.textContent="Saving...";
+  const x=await api("/reports","POST",{type:$("#rt").value,place:$("#rp").value,description:d,evidence:$("#ren").value,incident_at:dt.toISOString()});
+  if(!x.ok){$("#rs").disabled=false;m.textContent=x.j.error||"Could not save";return}
+  const bad=fl.length?await uploadEvidence(x.j.id,fl):[];rMsg=bad.length?"Report saved, but some files were not attached: "+bad.join("; "):"Report saved."+(fl.length?" Evidence attached.":"");render()};
+ $("#rfl").onchange=e=>{rFilter=e.target.value;render()};
+ $("#rpdf").onclick=()=>exportReportsPdf(L);
+ document.querySelectorAll("[data-pdf]").forEach(b=>b.onclick=()=>exportReportsPdf(all.filter(x=>String(x.id)===b.dataset.pdf)));
+ document.querySelectorAll("[data-r]").forEach(b=>b.onclick=async()=>{if(!confirm("Delete this report and its evidence files? This cannot be undone."))return;await api("/reports/"+b.dataset.r,"DELETE");render()});
+ document.querySelectorAll("[data-df]").forEach(b=>b.onclick=async()=>{const[i,f]=b.dataset.df.split(":");await api("/reports/"+i+"/evidence/"+f,"DELETE");render()});
+ let target=0;document.querySelectorAll("[data-af]").forEach(b=>b.onclick=()=>{target=b.dataset.af;$("#raf").value="";$("#raf").click()});
+ $("#raf").onchange=async e=>{const f=e.target.files[0];if(!f)return;const bad=await uploadEvidence(target,[f]);rMsg=bad.length?"File not attached: "+bad.join("; "):"File attached.";render()}}
+async function exportReportsPdf(list){
+ const w=window.open("","_blank");if(!w){alert("Your browser blocked the pop-up. Allow pop-ups for this site and try again.");return}
+ w.document.write("<p style=\"font:16px system-ui,sans-serif\">Preparing your report...</p>");
+ const blocks=[];let n=0;
+ for(const x of list){n++;const files=[];
+  for(const f of x.files){let url="";if(f.mime.startsWith("image/")){try{const rs=await fetch(`/api/reports/${x.id}/evidence/${f.id}`);if(rs.ok)url=await readUrl(await rs.blob())}catch{}}files.push({f,url})}
+  blocks.push(`<section><h2>${n}. ${esc(x.type)}</h2><table><tr><th>Date and time of incident</th><td>${esc(new Date(x.incident_at).toLocaleString())}</td></tr>${x.place?`<tr><th>Place</th><td>${esc(x.place)}</td></tr>`:""}<tr><th>Recorded in app</th><td>${esc(new Date(x.created_at).toLocaleString())}</td></tr><tr><th>What happened</th><td style="white-space:pre-wrap">${esc(x.description)}</td></tr>${x.evidence?`<tr><th>Evidence notes</th><td style="white-space:pre-wrap">${esc(x.evidence)}</td></tr>`:""}</table>
+  ${files.length?`<h3>Attached evidence</h3>`+files.map(({f,url})=>url?`<figure><img src="${url}" alt="${esc(f.name)}"><figcaption>${esc(f.name)}</figcaption></figure>`:`<p>${esc(f.name)} (${esc(f.mime==="application/pdf"?"PDF":"file")}, ${fmtBytes(f.size)}) is attached in the app and is not shown here.</p>`).join(""):""}</section>`)}
+ const who=[user&&user.name,user&&user.email].filter(Boolean).join(", ");
+ const html=`<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Safety incident report</title><style>body{font:14px/1.5 system-ui,sans-serif;color:#111;max-width:780px;margin:24px auto;padding:0 16px}h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:0 0 8px}h3{font-size:14px;margin:14px 0 6px}section{margin:22px 0;page-break-inside:avoid;border-top:2px solid #333;padding-top:12px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #bbb;padding:6px 8px;text-align:left;vertical-align:top}th{width:28%;background:#f1f1f1}figure{margin:10px 0;page-break-inside:avoid}img{max-width:100%;max-height:9cm}figcaption{font-size:12px;color:#555}.n{font-size:12px;color:#555}</style></head><body><h1>Safety incident report</h1><p class="n">Prepared ${esc(new Date().toLocaleString())}${who?" for "+esc(who):""}. ${list.length} report${list.length===1?"":"s"}.</p>${blocks.join("")}<p class="n">This is a personal record written by the account holder. It has not been verified by anyone else. To file a complaint: cybercrime.gov.in (online abuse), 112 or your local police station, 181 women helpline.</p></body></html>`;
+ w.document.open();w.document.write(html);w.document.close();setTimeout(()=>{try{w.focus();w.print()}catch{}},500)}
+async function contactsView(a){
+ if(!user)return needLogin(a,"save emergency contacts");
+ const r=await api("/contacts"),L=r.ok?r.j.contacts:[];r.ok&&cacheContacts(L);
+ a.innerHTML=`<h2>Emergency contacts</h2><p class="lead">Up to 5 people who get your alert and live location link when you press SOS.</p>
+ <div class="box">${L.length?L.map(c=>`<div class="row" style="justify-content:space-between;margin:6px 0"><span>${esc(c.name)} <span class="note">${esc(c.phone)}</span></span><button class="ghost sm" data-k="${c.id}">Remove</button></div>`).join(""):'<p class="note">No contacts yet.</p>'}</div>
+ <div class="box"><label for="cn">Name</label><input id="cn" maxlength="60"><label for="cp">Phone with country code (for example +919876543210)</label><input id="cp" inputmode="tel"><p><button id="ca">Add contact</button> <span id="cm" class="note" role="alert"></span></p></div>
+ <p class="note">Contacts are stored encrypted. Tell them they are your emergency contact so they know to act on your alert.</p>`;
+ $("#ca").onclick=async()=>{const x=await api("/contacts","POST",{name:$("#cn").value,phone:$("#cp").value});x.ok?render():$("#cm").textContent=x.j.error};
+ document.querySelectorAll("[data-k]").forEach(b=>b.onclick=async()=>{await api("/contacts/"+b.dataset.k,"DELETE");render()})}
+
+/* ---------- Offline-safe helpers ---------- */
+const LS={get:k=>{try{return JSON.parse(localStorage.getItem(k))}catch{return null}},set:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{}},del:k=>{try{localStorage.removeItem(k)}catch{}}};
+const cacheContacts=cs=>LS.set("fs_offline",{name:(user&&user.name)||"",contacts:(cs||[]).map(c=>({id:c.id,name:c.name,phone:c.phone}))});
+
+/* ---------- Calculator disguise ---------- */
+const dg=()=>LS.get("fs_disguise")||{};
+const hsh=async(salt,c)=>[...new Uint8Array(await crypto.subtle.digest("SHA-256",new TextEncoder().encode(salt+":"+c)))].map(x=>x.toString(16).padStart(2,"0")).join("");
+function evalExpr(s){let i=0;
+ const num=()=>{const m=/^(\d+\.?\d*|\.\d+)/.exec(s.slice(i));if(!m)throw 0;i+=m[0].length;return parseFloat(m[0])};
+ const fac=()=>{if(s[i]==="-"){i++;return -fac()}if(s[i]==="+"){i++;return fac()}if(s[i]==="("){i++;const v=expr();if(s[i++]!==")")throw 0;return v}return num()};
+ const term=()=>{let v=fac();while(s[i]==="*"||s[i]==="/"){const o=s[i++],r=fac();v=o==="*"?v*r:v/r}return v};
+ const expr=()=>{let v=term();while(s[i]==="+"||s[i]==="-"){const o=s[i++],r=term();v=o==="+"?v+r:v-r}return v};
+ const v=expr();if(i!==s.length||!isFinite(v))throw 0;return v}
+let cx="";
+[["C","C"],["(","("],[")",")"],["÷","/"],["7","7"],["8","8"],["9","9"],["×","*"],["4","4"],["5","5"],["6","6"],["−","-"],["1","1"],["2","2"],["3","3"],["+","+"],["0","0"],[".","."],["⌫","B"],["=","="]].forEach(([l,v])=>{
+ const b=document.createElement("button");b.textContent=l;if("/*-+=".includes(v))b.className="op";b.onclick=()=>cpress(v);$("#ckeys").append(b)});
+async function cpress(v){
+ if(v==="C")cx="";
+ else if(v==="B")cx=cx==="Error"?"":cx.slice(0,-1);
+ else if(v!=="="){if(cx==="Error")cx="";cx+=v}
+ else{const d=dg();
+  if(d.on&&d.hash&&/^\d+$/.test(cx)&&window.crypto&&crypto.subtle&&await hsh(d.salt,cx)===d.hash){cx="";showApp()}
+  else if(cx){try{cx=String(+evalExpr(cx).toPrecision(12))}catch{cx="Error"}}}
+ $("#cdisp").textContent=(cx||"0").replace(/\*/g,"×").replace(/\//g,"÷").replace(/-/g,"−")}
+const setTitle=()=>{document.title=dg().on?"Calculator":"SafeHer: Women's Safety"};
+function showApp(){document.documentElement.classList.remove("disg");$("#hideb").classList.toggle("hide",!dg().on)}
+function hideApp(){if(!dg().on)return;cx="";$("#cdisp").textContent="0";document.documentElement.classList.add("disg")}
+$("#hideb").onclick=hideApp;$("#hideb").classList.toggle("hide",!dg().on);setTitle();
+document.addEventListener("keydown",e=>{if(e.key==="Escape")hideApp()});
+document.addEventListener("visibilitychange",()=>{if(document.hidden&&dg().auto&&!sos)hideApp()});
+const privacyBox=()=>{const d=dg();return `<div class="box"><h3>Privacy mode</h3><p class="note">Disguise this app as a working calculator. Type your secret code and press = to open it. The setting and a scrambled copy of the code stay on this device only.</p>
+ <label style="font-weight:400"><input type="checkbox" id="dgon" style="width:auto" ${d.on?"checked":""}> Disguise as calculator</label>
+ <label for="dgc">Secret code (4 to 8 digits)</label><input id="dgc" type="password" inputmode="numeric" maxlength="8" autocomplete="off" placeholder="${d.on?"Enter a new code to change it":"For example 2580"}">
+ <label style="font-weight:400"><input type="checkbox" id="dga" style="width:auto" ${d.auto!==false?"checked":""}> Hide again when I switch apps or tabs</label>
+ <p><button class="sm" id="dgs">Save privacy mode</button> <span id="dgm" class="note" role="status"></span></p>
+ <p class="note">If you forget the code, clear this site's data in your browser settings.</p></div>`};
+function bindPrivacy(){const b=$("#dgs");if(!b)return;b.onclick=async()=>{const on=$("#dgon").checked,c=$("#dgc").value.trim(),d=dg(),m=$("#dgm");
+ if(!on){LS.del("fs_disguise");m.textContent="Privacy mode is off."}
+ else{if(!(window.crypto&&crypto.subtle)){m.textContent="Privacy mode needs HTTPS or localhost.";return}
+  if(c&&!/^\d{4,8}$/.test(c)){m.textContent="The code must be 4 to 8 digits.";return}
+  if(!c&&!d.hash){m.textContent="Choose a secret code.";return}
+  const salt=c?(crypto.randomUUID?crypto.randomUUID():String(Math.random())):d.salt,hash=c?await hsh(salt,c):d.hash;
+  LS.set("fs_disguise",{on:true,salt,hash,auto:$("#dga").checked});m.textContent="Saved. The app now opens as a calculator."}
+ $("#dgc").value="";$("#hideb").classList.toggle("hide",!dg().on);setTitle()}}
+
+/* ---------- SOS countdown, offline SMS fallback, voice trigger ---------- */
+function startCountdown(){const box=$("#cd");if(!box)return;let n=5;clearInterval(cd);
+ box.innerHTML='<p id="cdt"></p><button class="ghost" id="cx">Cancel</button>';
+ const tick=()=>$("#cdt").textContent=`Sending SOS in ${n}... This creates a live link that anyone with it can open.`;tick();
+ cd=setInterval(()=>{n--;if(n<=0){clearInterval(cd);fireSos()}else tick()},1000);
+ $("#cx").onclick=()=>{clearInterval(cd);box.innerHTML=""}}
+async function fireSos(){const box=$("#cd");if(!box)return;box.textContent="Sending...";
+ if(user){const e=await startSos("sos");if(e)return smsFallback(box);render()}else smsFallback(box)}
+const qual=a=>a<=30?["good","s-ok"]:a<=100?["fair","s-mid"]:["poor","s-bad"];
+function smsPack(f){const off=LS.get("fs_offline")||{name:"",contacts:[]},nums=(off.contacts||[]).map(x=>x.phone),
+ link=f?`https://maps.google.com/?q=${f.lat},${f.lon}`:"location unavailable",acc=f&&f.acc?` (accurate to about ${Math.round(f.acc)} m)`:"",
+ txt=`${off.name||(user&&user.name)?(off.name||user.name)+": ":""}SOS - I need help. My location: ${link}${acc}`;
+ return{txt,nums,href:`sms:${nums.join(",")}?body=${encodeURIComponent(txt)}`}}
+async function smsFallback(box){
+ if(!(lastPos&&Date.now()-lastPos.at<60000))await getPos();
+ const f=lastPos&&Date.now()-lastPos.at<60000?lastPos:null,{txt,nums,href}=smsPack(f),id=Date.now(),q=qual(f?f.acc:999);
+ LS.set("fs_queue",[...(LS.get("fs_queue")||[]),{at:id,confirmed:false}]);
+ box.innerHTML=`<div class="callout" role="alert"><p>Could not reach the server after trying 3 times, so there is no live link and nobody has been alerted yet.</p><p>To alert your contacts by SMS: 1. Tap Send SOS by SMS. 2. Press Send in your SMS app. This app cannot send the text or tell whether it was sent.</p></div>
+ <p class="note" style="word-break:break-all">${esc(txt)}</p>
+ ${f?`<p>Location accuracy: <span class="${q[1]}">about ${Math.round(f.acc)} m (${q[0]})</span></p>`:`<p class="s-bad">${esc(GEOMSG[geoErr]||GEOMSG.unavailable)} The message will have no location.</p>`}
+ ${nums.length?"":'<p class="note">No saved contacts on this device, so you will choose who to send it to.</p>'}
+ <div class="row"><a href="${esc(href)}"><button>Send SOS by SMS</button></a><button class="ghost" id="smsok">I pressed Send</button><button class="ghost" id="retry">Try the server again</button></div><p id="smsst" class="note" role="status"></p>`;
+ $("#smsok").onclick=()=>{LS.set("fs_queue",(LS.get("fs_queue")||[]).map(x=>x.at===id?{...x,confirmed:true,sentAt:Date.now()}:x));$("#smsst").textContent=`You confirmed the SMS was sent at ${new Date().toLocaleTimeString()}. This app cannot check that it was delivered.`};
+ $("#retry").onclick=async()=>{box.textContent="Retrying...";const e=await startSos("sos");e?smsFallback(box):render()};
+ try{location.href=href}catch{}}
+const queueBanner=()=>{const q=LS.get("fs_queue")||[];if(!q.length||!user||!navigator.onLine)return"";const l=q[q.length-1];
+ return `<div class="box" style="border-color:var(--hi)" role="alert"><p>${l.confirmed?`You told us you sent an SOS by SMS at ${new Date(l.sentAt||l.at).toLocaleTimeString()}.`:`An SOS SMS was prepared at ${new Date(l.at).toLocaleTimeString()}, but you did not confirm sending it, so your contacts may not know.`} You are online again. Start live location sharing so your contacts can follow you?</p><div class="row"><button id="qs">Start live sharing</button><button class="ghost" id="qd">Dismiss</button></div></div>`};
+function bindBanner(){const s=$("#qs");if(!s)return;s.onclick=async()=>{const c=await askShareConsent();if(!c)return;LS.set("fs_dur",c.minutes);const e=await startSos("sos",c.minutes);e?alert(e):render()};$("#qd").onclick=()=>{LS.del("fs_queue");render()}}
+let rec=null,voiceOn=false,trig=false;
+function voiceUi(){const b=$("#vb"),n=$("#vn");if(b){b.textContent=voiceOn?'Listening for "help". Tap to stop':'Listen for "help" (voice trigger)';b.setAttribute("aria-pressed",voiceOn)}
+ if(n)n.textContent=voiceOn?"Say help, bachao or madad to start a 5-second SOS countdown.":"Voice trigger works in Chrome or Edge while this page stays open, and needs internet."}
+function voiceStart(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR)return"Voice trigger is not supported in this browser. Use Chrome or Edge.";
+ rec=new SR();rec.continuous=true;rec.interimResults=true;rec.lang="en-IN";
+ rec.onresult=e=>{const t=[...e.results].slice(e.resultIndex).map(x=>x[0].transcript).join(" ").toLowerCase();if(/\b(help|bachao|madad)\b/.test(t))voiceTrigger()};
+ rec.onerror=e=>{if(e.error==="not-allowed"||e.error==="service-not-allowed"){voiceOn=false;voiceUi();const n=$("#vn");n&&(n.textContent="Microphone permission was blocked.")}};
+ rec.onend=()=>{if(voiceOn){try{rec.start()}catch{}}else voiceUi()};
+ voiceOn=true;try{rec.start()}catch{}voiceUi();return""}
+function voiceStop(){voiceOn=false;try{rec&&rec.stop()}catch{}voiceUi()}
+async function voiceTrigger(){if(trig||sos)return;trig=true;showApp();view="sos";await render();startCountdown();setTimeout(()=>trig=false,20000)}
+function bindVoice(){const b=$("#vb");if(!b)return;voiceUi();b.onclick=()=>{if(voiceOn)voiceStop();else{const e=voiceStart();if(e)$("#vn").textContent=e}}}
+addEventListener("online",()=>{if(sos)pushLoc(true);else if(view==="sos")render()});
+if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));
+
+/* ---------- SOS delivery status, accuracy, retries, per-contact confirmation ---------- */
+let CS=[],uiT=null;
+const newSt=(fix)=>({lastOk:0,fail:0,err:"",views:0,lastView:null,fix:fix||null,geoErr:"",pushing:false,hb:null,actKey:""});
+let st=newSt();
+const ago=ms=>{const s=Math.round((Date.now()-ms)/1000);return s<5?"just now":s<60?s+" s ago":Math.round(s/60)+" min ago"};
+const note=m=>{const b=$("#cd");b&&(b.textContent=m)};
+async function startSos(kind,minutes){
+ // consent:true is sent only after the person agreed: either the consent dialog, or pressing SOS and not cancelling the 5-second countdown.
+ const c=await getPos(),body={kind,consent:true,...(minutes?{minutes}:{}),...(c?{lat:c.latitude,lon:c.longitude,acc:c.accuracy}:{})};let r;
+ for(let i=1;i<=3;i++){note(i>1?`Server not reached. Retrying (${i} of 3)...`:"Sending...");r=await api("/sos","POST",body);
+  if(r.ok||(r.status&&r.status<500&&r.status!==429)||!navigator.onLine)break;if(i<3)await new Promise(z=>setTimeout(z,1500*i))}
+ if(!r.ok)return r.j.error||"Could not reach the server";
+ sos=r.j;LS.del("fs_queue");st=newSt(c?lastPos:null);st.lastOk=Date.now();st.geoErr=geoErr;trackWatch();return""}
+function trackWatch(){
+ if(watch==null&&navigator.geolocation)watch=navigator.geolocation.watchPosition(p=>{st.fix={lat:p.coords.latitude,lon:p.coords.longitude,acc:p.coords.accuracy,at:Date.now()};st.geoErr="";paint()},e=>{st.geoErr=({1:"denied",2:"unavailable",3:"timeout"})[e.code]||"unavailable";paint()},{enableHighAccuracy:true,maximumAge:5000,timeout:20000});
+ if(!st.hb)st.hb=setInterval(pushLoc,10000)}
+async function pushLoc(){if(!sos||st.pushing||st.err==="ended")return;st.pushing=true;const f=st.fix;
+ const r=await api("/sos/"+sos.id+"/loc","POST",f?{lat:f.lat,lon:f.lon,acc:f.acc}:{});st.pushing=false;
+ if(r.ok){st.lastOk=Date.now();st.fail=0;st.err="";st.views=r.j.views||0;st.lastView=r.j.last_view_at||null;if(r.j.expires_at)sos.expires_at=r.j.expires_at}
+ else{st.fail++;if(r.status===404){endedLocal("Sharing has ended on the server: it expired or was stopped. Your location is no longer shared and the link no longer works.");return}else if(r.status===401)st.err="signedout"}
+ paint()}
+async function stopSos(flash){if(watch!=null)navigator.geolocation.clearWatch(watch);watch=null;clearInterval(st.hb);clearInterval(uiT);if(sos)await api("/sos/"+sos.id+"/end","POST");sos=null;st=newSt();paintBar();if(flash)flashBar("Sharing stopped. The link no longer works and stored location points were deleted.")}
+function endedLocal(msg){if(watch!=null)navigator.geolocation.clearWatch(watch);watch=null;clearInterval(st.hb);clearInterval(uiT);sos=null;st=newSt();endNote=msg;paintBar();flashBar(msg);if(view==="sos")render()}
+function recoverSos(){if(!user||sos)return;return api("/sos/active").then(r=>{if(r.ok&&r.j.sos&&!sos){sos=r.j.sos;st=newSt();st.views=sos.views||0;st.lastView=sos.last_view_at||null;st.lastOk=Date.now();trackWatch();paintBar();if(view==="sos")render()}})}
+function paint(){const el=$("#sr");if(!el||!sos)return;const f=st.fix,q=f?qual(f.acc):null;let net,loc,seen;
+ if(st.err==="signedout")net='<span class="s-bad">You were signed out, so updates stopped. Sign in again.</span>';
+ else if(st.fail>0)net=`<span class="s-bad">Not reaching the server (${st.fail} failed ${st.fail>1?"tries":"try"}). Retrying every 10 seconds. Last success ${st.lastOk?ago(st.lastOk):"never"}.</span>`;
+ else net=st.lastOk?`<span class="s-ok">Live link working. Last update sent ${ago(st.lastOk)}.</span>`:'<span class="s-mid">Checking the connection...</span>';
+ if(f)loc=`<span class="${q[1]}">About ${Math.round(f.acc)} m (${q[0]})</span> <span class="note">GPS reading ${ago(f.at)}</span>${f.acc>100?'<br><span class="s-bad">Weak fix. Move outdoors or turn on GPS and high accuracy for a better position.</span>':""}`;
+ else loc=`<span class="${st.geoErr==="denied"||st.geoErr==="unavailable"?"s-bad":"s-mid"}">${esc(st.geoErr?GEOMSG[st.geoErr]:"Still looking for your location...")}</span>`;
+ const lv=st.lastView?Date.parse(st.lastView):0;
+ seen=st.views?`<span class="s-ok">Opened ${st.views} time${st.views>1?"s":""}. ${lv&&Date.now()-lv<30000?"Someone is watching now.":"Last seen "+ago(lv)+"."}</span>`:'<span class="s-mid">Not opened yet. Send it to your contacts below.</span>';
+ const ex=sos.expires_at?Date.parse(sos.expires_at):0,xl=ex?ex-Date.now():0,exr=ex?`<div class="st"><span>Link expires</span><span class="${xl<5*6e4?"s-mid":""}">in ${clock(xl)} (at ${new Date(ex).toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})})</span></div>`:"";const xa=$("#exa");xa&&ex&&(xa.textContent="at "+new Date(ex).toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})+" (in "+clock(xl)+")");
+ el.innerHTML=`<div class="st"><span>Server link</span><span>${net}</span></div>${exr}<div class="st"><span>Location accuracy</span><span>${loc}</span></div><div class="st"><span>Tracking link seen</span><span>${seen}</span></div>`;
+ const key=(st.fail>0||st.err)?"bad":"ok",sa=$("#sa");
+ if(sa&&sa.dataset.k!==key){sa.dataset.k=key;
+  sa.innerHTML=key==="bad"?'<div class="row" style="margin-top:10px" role="alert"><button class="sm" id="rt">Retry now</button><button class="ghost sm" id="smsb">Send my location by SMS instead</button></div><p class="note">The SMS button only opens your SMS app with the message ready. You must press Send yourself.</p>':"";
+  const rt=$("#rt");rt&&(rt.onclick=()=>pushLoc());const sb=$("#smsb");sb&&(sb.onclick=()=>{location.href=smsPack(st.fix).href})}}
+function alState(){const a=LS.get("fs_alerts");return a&&sos&&a.id===sos.id?a.c:{}}
+function setAl(cid,state,app){const c=alState(),o=c[cid]||{};c[cid]={state,app:app||o.app||"",at:Date.now()};LS.set("fs_alerts",{id:sos.id,c});paintAlerts()}
+function paintAlerts(){const el=$("#alerts");if(!el)return;const s=alState(),n=CS.length,m=encodeURIComponent(alertText()),done=CS.filter(c=>s[c.id]&&s[c.id].state==="sent").length;
+ el.innerHTML=(n?`<p class="note">${done} of ${n} contacts confirmed by you as sent.</p>`:'<p class="note">No saved contacts. Add them under Contacts, or use Share link.</p>')+CS.map(c=>{const x=s[c.id]||{};
+  const status=x.state==="sent"?`<span class="s-ok">You confirmed it was sent at ${new Date(x.at).toLocaleTimeString()}</span>`:x.state==="opened"?`<span class="s-mid">${esc(x.app)} opened at ${new Date(x.at).toLocaleTimeString()}. Not sent until you press Send there.</span>`:'<span class="s-bad">Not sent yet</span>';
+  return `<div class="al"><div class="st"><span>${esc(c.name)}</span><span>${status}</span></div><div class="row"><a data-o="${esc(c.id)}" data-app="WhatsApp" href="https://wa.me/${esc(c.phone.replace("+",""))}?text=${m}" target="_blank" rel="noopener"><button class="sm">WhatsApp</button></a><a data-o="${esc(c.id)}" data-app="SMS" href="sms:${esc(c.phone)}?body=${m}"><button class="ghost sm">SMS</button></a>${x.state==="opened"?`<button class="sm" data-sent="${esc(c.id)}">I pressed Send</button>`:""}</div></div>`}).join("");
+ el.querySelectorAll("a[data-o]").forEach(a=>a.addEventListener("click",()=>setTimeout(()=>setAl(a.dataset.o,"opened",a.dataset.app),0)));
+ el.querySelectorAll("[data-sent]").forEach(b=>b.onclick=()=>setAl(b.dataset.sent,"sent"))}
+/* ---------- Live sharing: consent dialog, always-visible indicator, automatic expiry ---------- */
+let endNote="",flashUntil=0;
+const clock=ms=>{ms=Math.max(0,Math.round(ms/1000));const h=Math.floor(ms/3600),m=Math.floor(ms%3600/60),s=ms%60;return(h?h+":"+pad2(m):m)+":"+pad2(s)};
+const DURS=[[30,"30 minutes"],[60,"1 hour"],[120,"2 hours"],[240,"4 hours"],[480,"8 hours"],[720,"12 hours"]];
+function askShareConsent(){return new Promise(res=>{const prev=document.activeElement,last=LS.get("fs_dur")||120,o=document.createElement("div");o.className="mdl";
+ o.innerHTML=`<div class="mbox" role="dialog" aria-modal="true" aria-labelledby="mdt"><h3 id="mdt">Create a public tracking link?</h3><p>Please read before you start:</p><ul>
+ <li>Anyone who gets the link can see your live location and your name. They do not need to sign in.</li>
+ <li>The app does not send the link for you. You choose who to share it with.</li>
+ <li>Sharing stops by itself at the time you choose below. You can stop it earlier at any moment. Then the link stops working and the stored location points are deleted.</li>
+ <li>While sharing, a bar at the top of the app shows that you are being tracked. Your phone needs location turned on and this page open to keep updating.</li></ul>
+ <label for="mdur">Stop sharing automatically after</label><select id="mdur">${DURS.map(([m,l])=>`<option value="${m}" ${m===last?"selected":""}>${l}</option>`).join("")}</select>
+ <label class="chk"><input type="checkbox" id="mok"><span>I understand that anyone with the link can see where I am, and I want to create it.</span></label>
+ <div class="row"><button id="myes" disabled>Create link and start sharing</button><button class="ghost" id="mno">Cancel</button></div></div>`;
+ document.body.appendChild(o);const ok=o.querySelector("#mok"),yes=o.querySelector("#myes"),no=o.querySelector("#mno");
+ const done=v=>{document.removeEventListener("keydown",kd,true);o.remove();prev&&prev.focus&&prev.focus();res(v)};
+ const kd=e=>{if(e.key==="Escape"){e.stopPropagation();e.preventDefault();done(null)}
+  else if(e.key==="Tab"){const f=[...o.querySelectorAll("select,input,button:not([disabled])")];if(!f.length)return;const i=f.indexOf(document.activeElement);
+   if(e.shiftKey&&i<=0){e.preventDefault();f[f.length-1].focus()}else if(!e.shiftKey&&(i===f.length-1||i<0)){e.preventDefault();f[0].focus()}}};
+ document.addEventListener("keydown",kd,true);ok.onchange=()=>{yes.disabled=!ok.checked};
+ yes.onclick=()=>ok.checked&&done({minutes:Number(o.querySelector("#mdur").value)});no.onclick=()=>done(null);o.addEventListener("click",e=>{if(e.target===o)done(null)});
+ o.querySelector("#mdur").focus()})}
+function flashBar(msg){const b=$("#shbar");if(!b||sos)return;flashUntil=Date.now()+8000;b.className="off noprint";b.innerHTML=`<span class="dot"></span><span>${esc(msg)}</span>`}
+function paintBar(force){const b=$("#shbar");if(!b)return;
+ if(!sos){if(Date.now()<flashUntil)return;b.className="hide noprint";b.innerHTML="";b.dataset.k="";return}
+ const exp=sos.expires_at?Date.parse(sos.expires_at):0,left=exp-Date.now();
+ if(exp&&left<=0){const id=sos.id;api("/sos/"+id+"/end","POST");endedLocal("Sharing ended automatically at "+new Date(exp).toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})+". Your location is no longer shared and the link has stopped working.");return}
+ const k=sos.id+sos.kind;flashUntil=0;
+ if(b.dataset.k!==k||force){b.dataset.k=k;const isSos=sos.kind==="sos";b.className=(isSos?"":"sh")+" noprint";
+  b.innerHTML=`<span class="dot"></span><span id="shl"></span><span class="row" style="gap:8px"><button id="shm">${view==="sos"?"Sharing controls":"Manage"}</button><button class="g" id="shs">Stop sharing</button></span>`;
+  $("#shm").onclick=()=>{view="sos";render();scrollTo(0,0)};
+  $("#shs").onclick=async()=>{if(sos&&sos.kind==="sos"&&!confirm("Stop the SOS? Your contacts will no longer see your location."))return;await stopSos(true);if(view==="sos")render()}}
+ const t=$("#shl");if(t){t.textContent=(sos.kind==="sos"?"SOS is on. Your live location is being shared.":"Your live location is being shared.")+(exp?" Ends in "+clock(left)+".":"")+(st.fail>0?" Not reaching the server.":"")}}
+setInterval(paintBar,1000);
+$("#lang").onchange=e=>{L=e.target.value;document.documentElement.lang=L;view==="scan"?0:render()};
+render();
+</script>
+</body>
+</html>

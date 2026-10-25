@@ -1,0 +1,73 @@
+// Main screens in English, Hindi and Marathi. Any missing key falls back to English.
+const en = {
+  tabRoutes: 'Routes', routesTitle: 'Walking routes', routesHint: 'Compare walking routes using live OpenStreetMap data. Needs internet.',
+  tabSos: 'SOS', tabCheck: 'Check', tabReports: 'Reports', tabPrivacy: 'Privacy', tabMe: 'Me',
+  hide: 'Hide', welcome: 'Your safety, in your pocket.', signIn: 'Sign in', register: 'Create account',
+  email: 'Email', password: 'Password', pw8: 'At least 8 characters',
+  sosHeadline: 'Press SOS if you feel unsafe', sosHint: 'You get 5 seconds to cancel. Then a live location link is made for your contacts.',
+  sosBtn: 'SOS', call112: 'Call 112', call181: 'Women helpline 181', shareLive: 'Share live location (no alarm)',
+  sendingIn: 'Sending SOS in', cancel: 'Cancel', cancelIt: 'Cancel SOS',
+  contacts: 'Emergency contacts', contactsHint: 'These people get your alert. Add up to 5.', name: 'Name', phone: 'Phone with country code',
+  add: 'Add contact', remove: 'Remove', noContacts: 'No contacts yet. Add someone you trust.',
+  imSafe: 'I am safe, stop sharing', add30: 'Add 30 min', shareLink: 'Share link', whatsapp: 'WhatsApp', sms: 'SMS',
+  sharingOn: 'Sharing live location', left: 'left', stop: 'Stop',
+  checkTitle: 'Is this message safe?', checkHint: 'Paste a suspicious SMS, WhatsApp or email. It is checked on your phone and not sent anywhere.',
+  paste: 'Paste', clear: 'Clear', checkBtn: 'Check message',
+  lvlHigh: 'Very likely a scam', lvlMed: 'Suspicious', lvlLow: 'Some warning signs', lvlNone: 'No known scam signs',
+  reportsTitle: 'Safety reports', reportsHint: 'Private notes about incidents, saved encrypted. Useful if you decide to report to police.',
+  newReport: 'New report', save: 'Save', category: 'Type of incident', place: 'Where', whatHappened: 'What happened', when: 'When it happened',
+  privacyTitle: 'Privacy tools', scan: 'Footprint scan', pwCheck: 'Password check', photoGuard: 'Photo guard',
+  me: 'My account', language: 'Language', signOut: 'Sign out', deleteAcc: 'Delete account and all data',
+  disguise: 'Calculator disguise', disguiseHint: 'The app opens as a working calculator. Type your secret code and press = to open SafeHer.',
+  secretCode: 'Secret code (4 to 8 digits)', autoHide: 'Hide again when I leave the app', saved: 'Saved',
+  profile: 'My details', yourName: 'Your name (shown on tracking link)', yourPhone: 'Your phone'
+};
+const hi = {
+  tabRoutes: 'रास्ते', routesTitle: 'पैदल रास्ते', routesHint: 'लाइव OpenStreetMap डेटा से पैदल रास्तों की तुलना करें। इंटरनेट ज़रूरी है।',
+  tabSos: 'SOS', tabCheck: 'जाँचें', tabReports: 'रिपोर्ट', tabPrivacy: 'प्राइवेसी', tabMe: 'मेरा',
+  hide: 'छुपाएँ', welcome: 'आपकी सुरक्षा, आपकी जेब में।', signIn: 'साइन इन', register: 'खाता बनाएँ',
+  email: 'ईमेल', password: 'पासवर्ड', pw8: 'कम से कम 8 अक्षर',
+  sosHeadline: 'असुरक्षित लगे तो SOS दबाएँ', sosHint: 'रद्द करने के लिए 5 सेकंड मिलते हैं। फिर आपके संपर्कों के लिए लाइव लोकेशन लिंक बनता है।',
+  sosBtn: 'SOS', call112: '112 पर कॉल करें', call181: 'महिला हेल्पलाइन 181', shareLive: 'लाइव लोकेशन शेयर करें (बिना अलार्म)',
+  sendingIn: 'SOS भेजा जाएगा', cancel: 'रद्द करें', cancelIt: 'SOS रद्द करें',
+  contacts: 'आपातकालीन संपर्क', contactsHint: 'इन लोगों को आपका अलर्ट मिलेगा। 5 तक जोड़ें।', name: 'नाम', phone: 'देश कोड के साथ फ़ोन',
+  add: 'संपर्क जोड़ें', remove: 'हटाएँ', noContacts: 'अभी कोई संपर्क नहीं। किसी भरोसेमंद को जोड़ें।',
+  imSafe: 'मैं सुरक्षित हूँ, शेयरिंग बंद करें', add30: '30 मिनट बढ़ाएँ', shareLink: 'लिंक शेयर करें', whatsapp: 'WhatsApp', sms: 'SMS',
+  sharingOn: 'लाइव लोकेशन शेयर हो रही है', left: 'बाकी', stop: 'बंद करें',
+  checkTitle: 'क्या यह संदेश सुरक्षित है?', checkHint: 'संदिग्ध SMS, WhatsApp या ईमेल यहाँ पेस्ट करें। जाँच आपके फ़ोन पर होती है, कहीं भेजी नहीं जाती।',
+  paste: 'पेस्ट', clear: 'साफ़ करें', checkBtn: 'संदेश जाँचें',
+  lvlHigh: 'लगभग निश्चित ठगी', lvlMed: 'संदिग्ध', lvlLow: 'कुछ चेतावनी संकेत', lvlNone: 'ठगी के कोई ज्ञात संकेत नहीं',
+  reportsTitle: 'सुरक्षा रिपोर्ट', reportsHint: 'घटनाओं के निजी नोट, एन्क्रिप्टेड सेव। पुलिस में शिकायत करना चाहें तो काम आएँगे।',
+  newReport: 'नई रिपोर्ट', save: 'सेव करें', category: 'घटना का प्रकार', place: 'कहाँ', whatHappened: 'क्या हुआ', when: 'कब हुआ',
+  privacyTitle: 'प्राइवेसी टूल', scan: 'फुटप्रिंट स्कैन', pwCheck: 'पासवर्ड जाँच', photoGuard: 'फ़ोटो गार्ड',
+  me: 'मेरा अकाउंट', language: 'भाषा', signOut: 'साइन आउट', deleteAcc: 'अकाउंट और सारा डेटा मिटाएँ',
+  disguise: 'कैलकुलेटर भेष', disguiseHint: 'ऐप एक चालू कैलकुलेटर की तरह खुलता है। अपना गुप्त कोड डालकर = दबाएँ तो SafeHer खुलेगा।',
+  secretCode: 'गुप्त कोड (4 से 8 अंक)', autoHide: 'ऐप छोड़ने पर फिर छुपा दें', saved: 'सेव हुआ',
+  profile: 'मेरी जानकारी', yourName: 'आपका नाम (ट्रैकिंग लिंक पर दिखेगा)', yourPhone: 'आपका फ़ोन'
+};
+const mr = {
+  tabRoutes: 'मार्ग', routesTitle: 'पायी मार्ग', routesHint: 'लाइव्ह OpenStreetMap डेटावरून पायी मार्गांची तुलना करा. इंटरनेट आवश्यक.',
+  tabSos: 'SOS', tabCheck: 'तपासा', tabReports: 'अहवाल', tabPrivacy: 'गोपनीयता', tabMe: 'माझे',
+  hide: 'लपवा', welcome: 'तुमची सुरक्षा, तुमच्या खिशात.', signIn: 'साइन इन', register: 'खाते तयार करा',
+  email: 'ईमेल', password: 'पासवर्ड', pw8: 'किमान 8 अक्षरे',
+  sosHeadline: 'असुरक्षित वाटल्यास SOS दाबा', sosHint: 'रद्द करण्यासाठी 5 सेकंद मिळतात. नंतर तुमच्या संपर्कांसाठी लाइव्ह लोकेशन लिंक तयार होते.',
+  sosBtn: 'SOS', call112: '112 ला कॉल करा', call181: 'महिला हेल्पलाइन 181', shareLive: 'लाइव्ह लोकेशन शेअर करा (अलार्मशिवाय)',
+  sendingIn: 'SOS पाठवला जाईल', cancel: 'रद्द करा', cancelIt: 'SOS रद्द करा',
+  contacts: 'आपत्कालीन संपर्क', contactsHint: 'या लोकांना तुमचा अलर्ट मिळेल. 5 पर्यंत जोडा.', name: 'नाव', phone: 'देश कोडसह फोन',
+  add: 'संपर्क जोडा', remove: 'काढा', noContacts: 'अजून संपर्क नाही. विश्वासू व्यक्तीला जोडा.',
+  imSafe: 'मी सुरक्षित आहे, शेअरिंग थांबवा', add30: '30 मिनिटे वाढवा', shareLink: 'लिंक शेअर करा', whatsapp: 'WhatsApp', sms: 'SMS',
+  sharingOn: 'लाइव्ह लोकेशन शेअर होत आहे', left: 'शिल्लक', stop: 'थांबवा',
+  checkTitle: 'हा संदेश सुरक्षित आहे का?', checkHint: 'संशयास्पद SMS, WhatsApp किंवा ईमेल येथे पेस्ट करा. तपासणी तुमच्या फोनवर होते, कुठेही पाठवली जात नाही.',
+  paste: 'पेस्ट', clear: 'पुसा', checkBtn: 'संदेश तपासा',
+  lvlHigh: 'जवळजवळ नक्की फसवणूक', lvlMed: 'संशयास्पद', lvlLow: 'काही सावधगिरीची चिन्हे', lvlNone: 'फसवणुकीची कोणतीही ज्ञात चिन्हे नाहीत',
+  reportsTitle: 'सुरक्षा अहवाल', reportsHint: 'घटनांच्या खाजगी नोंदी, एन्क्रिप्टेड जतन. पोलिसांत तक्रार करायची असल्यास उपयोगी.',
+  newReport: 'नवा अहवाल', save: 'जतन करा', category: 'घटनेचा प्रकार', place: 'कुठे', whatHappened: 'काय झाले', when: 'केव्हा झाले',
+  privacyTitle: 'गोपनीयता साधने', scan: 'फुटप्रिंट स्कॅन', pwCheck: 'पासवर्ड तपासणी', photoGuard: 'फोटो गार्ड',
+  me: 'माझे खाते', language: 'भाषा', signOut: 'साइन आउट', deleteAcc: 'खाते आणि सर्व डेटा हटवा',
+  disguise: 'कॅल्क्युलेटर वेश', disguiseHint: 'अ‍ॅप चालू कॅल्क्युलेटरसारखे उघडते. तुमचा गुप्त कोड टाकून = दाबा, SafeHer उघडेल.',
+  secretCode: 'गुप्त कोड (4 ते 8 अंक)', autoHide: 'अ‍ॅप सोडल्यावर पुन्हा लपवा', saved: 'जतन झाले',
+  profile: 'माझी माहिती', yourName: 'तुमचे नाव (ट्रॅकिंग लिंकवर दिसेल)', yourPhone: 'तुमचा फोन'
+};
+const D = { en, hi, mr };
+export const makeT = (lang) => (k) => (D[lang] && D[lang][k]) || en[k] || k;
+export const LANGS = [['en', 'English'], ['hi', 'हिन्दी'], ['mr', 'मराठी']];
