@@ -6,10 +6,10 @@ recHERsion 2026 · ACM-W NITK Surathkal · **Problem Statement 2: Women's Safety
 
 | | |
 |---|---|
-| Team | `<team name>` · `<member 1 (leader)>`, `<member 2>`, `<member 3>` |
-| Demo video | `<link>` |
+| Team | `code.exe`  |
+| Demo video | `https://drive.google.com/drive/folders/1xujcLyp8d529M5mQ4OqE9F25W9-hUwoR` |
 | Presentation (PPT) | `<link>` |
-| Repository | `<this repo link>` |
+| Live Website | `<https://safeher-womens-safety-app-v4s4.onrender.com>` |
 
 ---
 
